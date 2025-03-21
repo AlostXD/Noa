@@ -1,0 +1,103 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+model Usuario {
+  id           String      @id @default(uuid())
+  nome         String
+  email        String      @unique
+  senha        String
+  tipo         UsuarioTipo
+  criadoEm     DateTime    @default(now())
+  atualizadoEm DateTime    @updatedAt
+
+  Condominio   Condominio? @relation(fields: [condominioId], references: [id])
+  condominioId String?
+  Unidade      Unidade?    @relation(fields: [unidadeId], references: [id])
+  unidadeId    String?
+  Feedback     Feedback[]
+}
+
+enum UsuarioTipo {
+  ADMIN
+  MORADOR
+  SINDICO
+}
+
+model Condominio {
+  id       String   @id @default(uuid())
+  nome     String
+  endereco String
+  criadoEm DateTime @default(now())
+
+  unidades    Unidade[]
+  pagamentos  Pagamento[]
+  manutencoes Manutencao[]
+  feedbacks   Feedback[]
+  Usuario     Usuario[]
+}
+
+model Unidade {
+  id           String        @id @default(uuid())
+  numero       String
+  status       UnidadeStatus
+  condominio   Condominio    @relation(fields: [condominioId], references: [id])
+  condominioId String
+
+  moradores Usuario[]
+}
+
+enum UnidadeStatus {
+  DISPONIVEL
+  OCUPADO
+}
+
+model Pagamento {
+  id             String          @id @default(uuid())
+  valor          Float
+  status         PagamentoStatus
+  dataVencimento DateTime
+  condominio     Condominio      @relation(fields: [condominioId], references: [id])
+  condominioId   String
+}
+
+enum PagamentoStatus {
+  PENDENTE
+  PAGO
+  ATRASADO
+}
+
+model Manutencao {
+  id           String           @id @default(uuid())
+  descricao    String
+  data         DateTime         @default(now())
+  status       ManutencaoStatus
+  condominio   Condominio       @relation(fields: [condominioId], references: [id])
+  condominioId String
+}
+
+enum ManutencaoStatus {
+  PENDENTE
+  CONCLUIDO
+}
+
+model Feedback {
+  id           String     @id @default(uuid())
+  mensagem     String
+  criadoEm     DateTime   @default(now())
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+  usuarioId    String
+  condominio   Condominio @relation(fields: [condominioId], references: [id])
+  condominioId String
+}
