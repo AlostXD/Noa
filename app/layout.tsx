@@ -22,8 +22,8 @@ export const metadata: Metadata = {
   title: "Noa",
   description: "Seu parceiro na gerência de condominios",
   icons: {
-    icon: "/coruja.png",
-    shortcut: "/coruja.png",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
   },
 };
 
