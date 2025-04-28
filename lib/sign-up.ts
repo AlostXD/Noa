@@ -1,29 +1,20 @@
 import { authClient } from "@/lib/auth-client";
 
-const email = "usuario@example.com";
-const password = "senhaSegura123";
-const name = "Nome do Usuário";
-const image = "https://exemplo.com/imagem.png";
+interface SignUpProps {
+  email: string;
+  password: string;
+  name: string;
+  image?: string;
+  callbackURL?: string;
+}
 
-const { data, error } = await authClient.signUp.email(
-{
+// Exporta uma função de cadastro que pode ser usada no seu formulário
+export async function signUp({ email, password, name, image, callbackURL }: SignUpProps) {
+  return await authClient.signUp.email({
     email,
     password,
     name,
     image,
-    callbackURL: "/dashboard"
-},
-{
-    onRequest: (ctx) => {
-      // Exibir carregamento
-    },
-    onSuccess: (ctx) => {
-      // Redirecionar para o dashboard ou página de login
-      
-    },
-    onError: (ctx) => {
-      // Exibir mensagem de erro
-      alert(ctx.error.message);
-    },
-  }
-)
+    callbackURL,
+  });
+}
