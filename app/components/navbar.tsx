@@ -3,51 +3,71 @@
 
 import Image from 'next/image'
 import React, { useState } from 'react'
+import UserProfile from './userProfile'
 
 export default function Navbar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false)
 
   return (
     <>
-      <div className="lg:flex lg:items-center lg:justify-between p-4 bg-gray-800 text-white">
-        <div className="flex items-center justify-between">
-          <Image
-            src="/Logo.png"
-            alt="Logo"
-            width={100}
-            height={100}
-          />
+      <div className="lg:flex lg:items-center lg:justify-between p-4 bg-g1 text-white">
+        <div className="flex flex-col lg:flex-row justify-center">
           <button
-            className="lg:hidden text-white focus:outline-none"
+            className="flex flex-col gap-1 lg:hidden"
             onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           >
-            ☰
+            <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+            <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+            <span className='w-6 h-1 bg-t2 p-[1px]'></span>
           </button>
         </div>
+        <Image
+          src="/Logo-B.png"
+          alt="Logo"
+          width={100}
+          height={100}
+          className="hidden lg:block"
+        />
         <ul
-          className={`lg:flex lg:gap-4 lg:static lg:bg-transparent lg:translate-x-0 lg:shadow-none lg:p-0 
-          fixed top-0 left-0 h-full w-64 text-white shadow-lg p-4 transform transition-transform ${
-            isSidebarOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`
+            lg:flex lg:items-center lg:justify-center lg:gap-4
+            ${isSidebarOpen ? 'flex flex-col items-center justify-center' : 'hidden'}
+          `}
         >
           <li className="mb-4 lg:mb-0"><a href="#">Home</a></li>
           <li className="mb-4 lg:mb-0"><a href="#">Soluções</a></li>
           <li className="mb-4 lg:mb-0"><a href="#">Empreendimentos</a></li>
-          <li><a href="#">Acessar o Sistema</a></li>
+          <li><a href="#">Acessar o Sistemas</a></li>
+          <UserProfile />
         </ul>
       </div>
       {isSidebarOpen && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 lg:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        >
-          <ul className='text-white'>
-            <li className="mb-4 lg:mb-0"><a href="#">Home</a></li>
-            <li className="mb-4 lg:mb-0"><a href="#">Soluções</a></li>
-            <li className="mb-4 lg:mb-0"><a href="#">Empreendimentos</a></li>
-            <li><a href="#">Acessar o Sistema</a></li>
-          </ul>
-        </div>
+        <>
+          <div
+            className="fixed inset-0 bg-g1 lg:hidden flex flex-col items-center justify-between z-50 gap-4 p-4"
+            >
+            <button
+              className="flex flex-col gap-1"
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+            </button>
+            <ul className='text-t2 flex flex-col items-center justify-center gap-6 font-bold'>
+              <li className="lg:mb-0"><a href="#">Home</a></li>
+              <li className="lg:mb-0"><a href="#">Soluções</a></li>
+              <li className="lg:mb-0"><a href="#">Empreendimentos</a></li>
+              <li><a href="#">Acessar o Sistema</a></li>
+            </ul>
+            <Image
+              src="/Logo-B.png"
+              alt="Logo"
+              width={100}
+              height={100}
+            />
+          </div>
+        </>
       )}
     </>
   )
