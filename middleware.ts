@@ -1,14 +1,24 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-
-export async function middleware(req: NextRequest) {
-  const isProtectedRoute = req.nextUrl.pathname.startsWith("/dashboard");
-
-  const token = req.cookies.get("better-auth-token")?.value;
-
-  if (isProtectedRoute && !token) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-
-  return NextResponse.next();
+import { NextRequest, NextResponse } from "next/server";
+import { getSessionCookie } from "better-auth/cookies";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+ 
+export async function middleware(request: NextRequest) {
+	const sessionCookie = getSessionCookie(request, {
+    cookiePrefix: "noa",
+  });
+  const session = await auth.api.getSession({
+      headers: await headers()
+  })
+  
+	if (!sessionCookie && !session) {
+		return NextResponse.redirect(new URL("/", request.url));
+	}
+ 
+	return NextResponse.next();
 }
+ 
+export const config = {
+  runtime: "nodejs",
+	matcher: ["/dashboard/:path"], // Specify the routes the middleware applies to
+};

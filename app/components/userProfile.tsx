@@ -2,40 +2,27 @@
 import Image from "next/image";
 import React from "react";
 import { authClient } from "@/lib/auth-client";
+
+type props = {
+    style: string;
+}
  
-export default function UserProfile() {
+export default function UserProfile({style}: props) {
     
     const { data: session } = authClient.useSession(); 
 
-    if (!session) {
+    if (session) {
         return (
             <>
-                <div className="flex flex-col justify-center items-center gap-2">
+                <div className={`flex ${style} lg:flex-row justify-center items-center gap-2 lg:m-5 text-t2 font-bold`}>
                     <Image
-                        src="/icon.png"
+                        src={session.user.image || "/login/User.png"}
                         alt="User-Profile-Icon"
-                        width={50}
-                        height={50}
-                        className="rounded-full border-2 border-t1"
+                        width={35}
+                        height={35}
+                        className="rounded-full"
                     />
-                    <p>Crie sua conta</p>
-                </div>
-            </>
-        )
-    }
-    else{
-        return (
-            <>
-                <div className="">
-                    <Image
-                        src="/icon.png"
-                        alt="User-Profile-Icon"
-                        width={50}
-                        height={50}
-                    />
-                    <p>{session.user.id}</p>
-                    <p>{session.user.name}</p>
-                    <p>{session.user.email}</p>
+                    <h1>{session.user.name}</h1>
                 </div>
             </>
         )
