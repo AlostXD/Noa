@@ -21,8 +21,8 @@ export default function DashboardPage() {
         console.log("Resposta da sessão:", session);
 
         if (!session || !session || !session.data?.user) {
-          alert("Usuário não autenticado, redirecionando para a página inicial.");
-          router.push("/");
+          alert("Usuário não autenticado, redirecionando para a página de login.");
+          router.push("/sign-in");
         } else {
           toast.success(`Sessão verificada com sucesso, seja bem-vindo(a) ao seu Dashboard, ${session.data.user.name}!`);
           setLoading(false); // Liberar o conteúdo

@@ -4,7 +4,11 @@ import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 
-export default function LogoutButton() {
+type Props = {
+  width?: string;
+}
+
+export default function LogoutButton({ width }: Props) {
   const router = useRouter();
 
   async function handleLogout() {
@@ -16,7 +20,7 @@ export default function LogoutButton() {
   return (
     <button
       onClick={handleLogout}
-      className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
+      className={`px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition cursor-pointer ${width || "w-auto"}`}
     >
       Sair
     </button>

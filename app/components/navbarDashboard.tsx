@@ -68,6 +68,9 @@ export default function NavbarDashboard() {
             </Link>
             <UserProfile style='flex-row' />
         </ul>
+        <div className="absolute top-5 right-5 flex lg:hidden lg:items-center lg:gap-6">
+            <UserProfile style='flex-row'/>
+        </div>
       </div>
       {isSidebarOpen && (
         <>
@@ -123,7 +126,7 @@ export default function NavbarDashboard() {
                 width={100}
                 height={100}
             />
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all text-t2 duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="#">
             Retornar a Dashboard
             </Link>
           </div>
