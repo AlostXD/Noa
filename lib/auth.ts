@@ -19,6 +19,3 @@ export const auth = betterAuth({
   },
   plugins: [nextCookies()],
 });
-
-// Exportar o API para uso no middleware
-export const authAPI = auth.api;

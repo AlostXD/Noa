@@ -119,6 +119,9 @@ export default function NavbarDashboard() {
             />
             Documentos
             </Link>
+            <Link className="mb-4 lg:mb-0 transition-all text-t2 duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="#">
+            Retornar a Dashboard
+            </Link>
             </ul>
             <Image
                 src="/Logo-B.png"
@@ -126,9 +129,6 @@ export default function NavbarDashboard() {
                 width={100}
                 height={100}
             />
-            <Link className="mb-4 lg:mb-0 transition-all text-t2 duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="#">
-            Retornar a Dashboard
-            </Link>
           </div>
         </>
       )}
