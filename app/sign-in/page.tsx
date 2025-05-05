@@ -49,6 +49,23 @@ export default function LoginPage() {
     }
   }
 
+
+
+  
+  async function providerGoogleLogin(){
+    try{
+      await authClient.signIn.social({
+        provider: "google",
+        callbackURL: "/dashboard",
+        errorCallbackURL: "/sign-in",
+      })
+    } catch (error) {
+      alert("Erro ao fazer login com o Google.")
+      router.push("/sign-in")
+    }
+  }
+
+
   return (
     <>
       <NavbarOpen />
@@ -107,6 +124,21 @@ export default function LoginPage() {
                 height={30}
               />
               Github
+            </button>
+          </div>
+
+          <div className="flex">
+            <button
+              onClick={providerGoogleLogin}
+              className="flex items-center justify-center gap-2 bg-bg text-t1 rounded py-2 w-full hover:bg-amber-100 transition cursor-pointer shadow-md shadow-black hover:shadow-none"
+            >
+              <Image
+                src="/login/google.png"
+                alt="Google"
+                width={30}
+                height={30}
+              />
+              Google
             </button>
           </div>
           

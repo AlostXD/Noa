@@ -17,7 +17,7 @@ model Usuario {
   id           String      @id @default(uuid())
   nome         String
   email        String      @unique
-  senha        String
+  cpf          String      @unique
   tipo         UsuarioTipo
   criadoEm     DateTime    @default(now())
   atualizadoEm DateTime    @updatedAt
@@ -27,6 +27,8 @@ model Usuario {
   Unidade      Unidade?    @relation(fields: [unidadeId], references: [id])
   unidadeId    String?
   Feedback     Feedback[]
+
+  @@map("usuario")
 }
 
 enum UsuarioTipo {
