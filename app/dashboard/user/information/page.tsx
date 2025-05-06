@@ -11,11 +11,10 @@ export default async function userPage() {
   return (
     <>
         <NavbarDashboard/>
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-g0 to-g1">
-            <div className="bg-gray-200 p-4 rounded-md shadow-md">
-                <UserProfileLayout style='flex-col'/>
-            </div>
-            <LogoutButton />
+        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-g0 to-g1 gap-4">
+            <h1 className='text-3xl text-t2 font-bold'>Informações pessoais</h1>
+            <h3 className='text-lg text-t2 italic'>Essas informações poderão ser utilizadas em documentos para emissões.</h3>
+            <RegisterInfo />
         </div>
     </>
   )

@@ -106,7 +106,7 @@ export default function LoginPage() {
           {!loading &&
             <button
             type="submit"
-            className="bg-blue-600 text-white rounded py-2 hover:bg-blue-700 transition hover:cursor-pointer"
+            className="bg-blue-600 text-white rounded py-2 hover:bg-blue-700 transition hover:cursor-pointer shadow-sm shadow-black hover:shadow-none"
             >
               Entrar
             </button>
@@ -115,7 +115,7 @@ export default function LoginPage() {
           <div className="flex">
             <button
               onClick={providerLogin}
-              className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded py-2 w-full hover:bg-gray-700 transition cursor-pointer"
+              className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded py-2 w-full hover:bg-gray-700 transition cursor-pointer shadow-sm shadow-black hover:shadow-none"
             >
               <Image
                 src="/login/github.png"
@@ -130,7 +130,7 @@ export default function LoginPage() {
           <div className="flex">
             <button
               onClick={providerGoogleLogin}
-              className="flex items-center justify-center gap-2 bg-bg text-t1 rounded py-2 w-full hover:bg-amber-100 transition cursor-pointer shadow-md shadow-black hover:shadow-none"
+              className="flex items-center justify-center gap-2 bg-bg text-t1 rounded py-2 w-full hover:bg-gray-200 transition cursor-pointer shadow-sm shadow-black hover:shadow-none"
             >
               <Image
                 src="/login/google.png"
