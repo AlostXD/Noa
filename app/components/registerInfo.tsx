@@ -1,10 +1,13 @@
 "use client";
 
+import { verifyCpf } from '@/lib/verify-cpf';
 import React from 'react'
 import toast from 'react-hot-toast';
 
 
 export default function registerInfo() {
+
+
   return (
   <form action={
     async (formData: FormData) => {
@@ -14,7 +17,7 @@ export default function registerInfo() {
     });
 
     if (!response.ok) {
-        toast.error('Erro ao atualizar os dados. Este CPF já existe.');
+        toast.error('Erro ao atualizar os dados. Este CPF já existe. Caso você não tenha certeza, entre em contato com o suporte.');
         return;
     }
 
