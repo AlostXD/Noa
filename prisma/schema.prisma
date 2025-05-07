@@ -1,9 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -15,41 +9,33 @@ datasource db {
 
 model Usuario {
   id           String      @id
-  user         User        @relation(fields: [id], references: [id])
   nome         String
   email        String      @unique
-  endereco     String
   cpf          String      @unique
-  date         String
   tipo         UsuarioTipo
   criadoEm     DateTime    @default(now())
   atualizadoEm DateTime    @updatedAt
-
-  Condominio   Condominio? @relation(fields: [condominioId], references: [id])
   condominioId String?
-  Unidade      Unidade?    @relation(fields: [unidadeId], references: [id])
   unidadeId    String?
+  date         String
+  endereco     String
   Feedback     Feedback[]
+  Condominio   Condominio? @relation(fields: [condominioId], references: [id])
+  user         User        @relation(fields: [id], references: [id])
+  Unidade      Unidade?    @relation(fields: [unidadeId], references: [id])
 
   @@map("usuario")
 }
 
-enum UsuarioTipo {
-  ADMIN
-  MORADOR
-  SINDICO
-}
-
 model Condominio {
-  id       String   @id @default(uuid())
-  nome     String
-  endereco String
-  criadoEm DateTime @default(now())
-
-  unidades    Unidade[]
-  pagamentos  Pagamento[]
-  manutencoes Manutencao[]
+  id          String       @id @default(uuid())
+  nome        String
+  endereco    String
+  criadoEm    DateTime     @default(now())
   feedbacks   Feedback[]
+  manutencoes Manutencao[]
+  pagamentos  Pagamento[]
+  unidades    Unidade[]
   Usuario     Usuario[]
 }
 
@@ -57,15 +43,9 @@ model Unidade {
   id           String        @id @default(uuid())
   numero       String
   status       UnidadeStatus
-  condominio   Condominio    @relation(fields: [condominioId], references: [id])
   condominioId String
-
-  moradores Usuario[]
-}
-
-enum UnidadeStatus {
-  DISPONIVEL
-  OCUPADO
+  condominio   Condominio    @relation(fields: [condominioId], references: [id])
+  moradores    Usuario[]
 }
 
 model Pagamento {
@@ -73,14 +53,8 @@ model Pagamento {
   valor          Float
   status         PagamentoStatus
   dataVencimento DateTime
-  condominio     Condominio      @relation(fields: [condominioId], references: [id])
   condominioId   String
-}
-
-enum PagamentoStatus {
-  PENDENTE
-  PAGO
-  ATRASADO
+  condominio     Condominio      @relation(fields: [condominioId], references: [id])
 }
 
 model Manutencao {
@@ -88,45 +62,39 @@ model Manutencao {
   descricao    String
   data         DateTime         @default(now())
   status       ManutencaoStatus
-  condominio   Condominio       @relation(fields: [condominioId], references: [id])
   condominioId String
-}
-
-enum ManutencaoStatus {
-  PENDENTE
-  CONCLUIDO
+  condominio   Condominio       @relation(fields: [condominioId], references: [id])
 }
 
 model Feedback {
   id           String     @id @default(uuid())
   mensagem     String
   criadoEm     DateTime   @default(now())
-  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
   usuarioId    String
-  condominio   Condominio @relation(fields: [condominioId], references: [id])
   condominioId String
+  condominio   Condominio @relation(fields: [condominioId], references: [id])
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
 }
 
 model User {
   id            String    @id
   name          String
-  email         String
+  email         String    @unique
   emailVerified Boolean
   image         String?
   createdAt     DateTime
   updatedAt     DateTime
-  sessions      Session[]
   accounts      Account[]
-  Usuario       Usuario[]
+  sessions      Session[]
+  Usuario       Usuario?
 
-  @@unique([email])
   @@map("user")
 }
 
 model Session {
   id        String   @id
   expiresAt DateTime
-  token     String
+  token     String   @unique
   createdAt DateTime
   updatedAt DateTime
   ipAddress String?
@@ -134,7 +102,6 @@ model Session {
   userId    String
   user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([token])
   @@map("session")
 }
 
@@ -143,7 +110,6 @@ model Account {
   accountId             String
   providerId            String
   userId                String
-  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   accessToken           String?
   refreshToken          String?
   idToken               String?
@@ -153,6 +119,7 @@ model Account {
   password              String?
   createdAt             DateTime
   updatedAt             DateTime
+  user                  User      @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@map("account")
 }
@@ -166,4 +133,26 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum UsuarioTipo {
+  ADMIN
+  MORADOR
+  SINDICO
+}
+
+enum UnidadeStatus {
+  DISPONIVEL
+  OCUPADO
+}
+
+enum PagamentoStatus {
+  PENDENTE
+  PAGO
+  ATRASADO
+}
+
+enum ManutencaoStatus {
+  PENDENTE
+  CONCLUIDO
 }

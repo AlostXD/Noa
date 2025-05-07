@@ -63,7 +63,7 @@ export default function NavbarDashboard() {
             />
             Documentos
             </Link>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2 bg-g0 p-2 rounded-md" href="/dashboard">
             Retornar a Dashboard
             </Link>
             <UserProfile style='flex-row' />

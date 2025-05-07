@@ -1,6 +1,5 @@
 "use client";
 
-import { verifyCpf } from '@/lib/verify-cpf';
 import React from 'react'
 import toast from 'react-hot-toast';
 
@@ -12,18 +11,19 @@ export default function registerInfo() {
   <form action={
     async (formData: FormData) => {
     const response = await fetch('/api/account/registerinformation', {
-        method: 'POST',
-        body: formData,
+      method: 'POST',
+      body: formData,
     });
 
     if (!response.ok) {
-        toast.error('Erro ao atualizar os dados. Este CPF já existe. Caso você não tenha certeza, entre em contato com o suporte.');
-        return;
+      const errorData = await response.json();
+      toast.error(errorData.error);
+      return;
     }
 
     const result = await response.json();
-        toast.success('Dados atualizados com sucesso!');
-        console.log('User information updated successfully:', result);
+      toast.success(result.message);
+      console.log('User information updated successfully:', result);
     }
   }
   className='text-center'
