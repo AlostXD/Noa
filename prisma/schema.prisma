@@ -14,7 +14,8 @@ datasource db {
 }
 
 model Usuario {
-  id           String      @id @default(uuid())
+  id           String      @id
+  user         User        @relation(fields: [id], references: [id])
   nome         String
   email        String      @unique
   endereco     String
@@ -116,6 +117,7 @@ model User {
   updatedAt     DateTime
   sessions      Session[]
   accounts      Account[]
+  Usuario       Usuario[]
 
   @@unique([email])
   @@map("user")
