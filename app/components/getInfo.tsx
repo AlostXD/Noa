@@ -21,6 +21,7 @@ export default async function GetInfo() {
                     <p>CPF: {user?.cpf}</p>
                     <p>Endereço: {user?.endereco}</p>
                     <p>Data de Nascimento: {user?.date}</p>
+                    <p>Tipo de plano: {user?.tipo}</p>
                 </div>
             </div>
         </div>
