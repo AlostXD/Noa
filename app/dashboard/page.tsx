@@ -6,6 +6,10 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import NavbarDashboard from "../components/navbarDashboard";
 
+import Image from 'next/image';
+import Link from 'next/link';
+import UserProfile from '../userProfile';
+
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -48,14 +52,72 @@ export default function DashboardPage() {
   return (
     <>
       <NavbarDashboard />
-      <div className="flex flex-col items-center justify-center min-h-screen">
-        <h1 className="text-3xl font-bold mb-4">Bem-vindo ao Dashboard!</h1>
-        <button
-          onClick={handleSignOut}
-          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition"
-        >
-          Sair
-        </button>
+      
+      <div className="bg-white flex flex-row justify-center w-full" data-model-id="20:2">
+        <div className="bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)] w-full max-w-[1440px] min-h-screen flex flex-col items-start p-4 lg:p-8 relative">
+          <div className="w-full max-w-[700px] lg:max-w-[1330px] flex flex-col items-start mt-14">
+            <div className="flex justify-between items-center w-full mb-8 lg:mb-16">
+              <Image
+                  src="/Logo-B.png"
+                  alt="Logo"
+                  width={106}
+                  height={61}
+                />
+
+              <div className="flex items-center gap-1">
+                
+                <Image
+                  src="/Login/user.png"
+                  alt="User"
+                  width={34}
+                  height={34}
+                />
+                <Image
+                  src="/Login/seta.png"
+                  alt="Seta"
+                  width={12}
+                  height={12}
+                />
+                
+              </div>
+            </div>
+          </div>
+
+          <hr className="w-full max-w-[1330px] border-t border-white mb-8 lg:mb-16" />
+
+          <div className="w-full max-w-[700px] lg:max-w-[1330px] flex flex-col items-start">
+            <div className="mb-6 lg:mb-10">
+              <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-xl tracking-[0] leading-[normal] mb-2">
+                Funções
+              </div>
+              <hr className="w-[120px] bg-white h-[3px] border-0 p-0 m-0 mb-4"/>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 w-full">
+              {[
+                { img: "age.png", text: "Agendamento" },
+                { img: "fin.png", text: "Financeiro" },
+                { img: "for.png", text: "Fórum" },
+                { img: "doc.png", text: "Documentos" },
+              ].map((item, index) => (
+                <Link
+                  key={index}
+                  href="#"
+                  className="inline-flex items-center gap-4">
+                  <Image
+                    width={58}
+                    height={58}
+                    alt={item.text}
+                    src={`/Login/morador/${item.img}`}
+                  />
+                  <div className="[font-family:'Poppins',Helvetica] font-bold text-white text-base tracking-[0] leading-[normal]">
+                    {item.text}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </>
   );
