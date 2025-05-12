@@ -1,35 +1,41 @@
-'use client';
-import React from 'react';
-import Image from 'next/image';
-import useGetInfo from '../getInfo'; //getInfo é de outra pasta precisa adicionar o caminho
 
-const FinanceiroPage = () => {
-  const { user, notifications } = useGetInfo();
+import NavbarDashboard from "../components/navbarDashboard";
 
+export default function Financeiro() {
   return (
-    <main className="min-h-screen bg-gray-50">
-      <header className="bg-blue-800 text-white p-4 sm:p-6 flex justify-between items-center">
-        <Image src="/Logo-B.png" alt="NØÅ Logo" width={120} height={40} />
-        <nav className="flex items-center">
-          <button className="mr-4 text-base sm:text-lg" aria-label="Notificações">🔔 {notifications?.length || 0}</button>
-          <span className="text-sm sm:text-base">{user?.name || 'Usuário'}</span>
-        </nav>
-      </header>
+    <div className="min-h-screen bg-white">
+      <NavbarDashboard />
+      <div className="p-4">
+        <h1 className="text-xl font-semibold mb-2">Minhas Faturas</h1>
+        <p className="text-sm text-gray-600 mb-4">
+          Você pode escolher outros produtos para ver as faturas
+        </p>
 
-      <section className="px-4 sm:px-6 lg:px-8 max-w-3xl sm:max-w-5xl mx-auto py-6">
-        <h2 className="text-2xl sm:text-3xl font-bold mb-2">Minhas Faturas</h2>
-        <p className="text-gray-600 mb-4 text-sm sm:text-base">Você pode selecionar outros produtos para ver as faturas</p>
-
-        <div className="flex flex-col sm:flex-row gap-4 mb-6">
-          {[1, 2].map((idx) => (
-            <div key={idx} className="flex-1 bg-blue-600 text-white rounded-xl p-4 text-center hover:bg-blue-700 transition">&nbsp;</div>
-          ))}
+        <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-4 mb-6">
+          <div className="bg-blue-800 text-white rounded-xl p-4 w-full sm:w-1/2">
+            <h2 className="font-semibold">Aluguel</h2>
+            <p className="text-sm">Você paga por morar em um imóvel via Locar</p>
+          </div>
+          <div className="bg-blue-800 text-white rounded-xl p-4 w-full sm:w-1/2">
+            <h2 className="font-semibold">Condomínio</h2>
+            <p className="text-sm">O valor do seu condomínio</p>
+          </div>
         </div>
 
-        <div className="bg-white rounded-xl p-4 shadow h-40 sm:h-60" />
-      </section>
-    </main>
+        <div className="bg-gray-50 rounded-xl p-4">
+          <ul className="space-y-4">
+            <li className="flex justify-end items-center border-b pb-2">
+              <div className="w-16 h-6 bg-white rounded" />
+            </li>
+            <li className="flex justify-end items-center border-b pb-2">
+              <div className="w-16 h-6 bg-white rounded" />
+            </li>
+            <li className="flex justify-end items-center">
+              <div className="w-16 h-6 bg-white rounded" />
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   );
-};
-
-export default FinanceiroPage;
+}
