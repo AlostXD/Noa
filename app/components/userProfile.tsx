@@ -23,7 +23,7 @@ export default function UserProfile({style}: props) {
             <>
                     <div
                         onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                        className={`flex ${style} lg:flex-row justify-center items-center gap-2 lg:m-5 text-t2 font-bold cursor-pointer`}
+                        className={`flex ${style} lg:flex-row justify-center items-center gap-2 lg:m-5 text-t2 font-bold cursor-pointer relative`}
                     >
 
                     <Image
@@ -36,7 +36,7 @@ export default function UserProfile({style}: props) {
                     <h1>{session.user.name}</h1>
                         {isDropdownOpen && (
                         <div
-                            className="mt-2 bg-gradient-to-b from-g0 to-g1 rounded shadow-lg transition-all duration-300 ease-in-out transform opacity-0 scale-95 absolute top-7 lg:top-15"
+                            className="mt-2 bg-gradient-to-b from-g0 to-g1 rounded shadow-lg transition-all duration-300 ease-in-out transform opacity-0 scale-95 absolute top-7 lg:top-10"
                             style={{
                                 opacity: isDropdownOpen ? 1 : 0,
                                 transform: isDropdownOpen ? "scale(1)" : "scale(0.95)",
@@ -53,6 +53,13 @@ export default function UserProfile({style}: props) {
                             </ul>
                         </div>
                     )}
+                    
+                    <Image
+                    src="/Login/seta.png"
+                    alt="Seta"
+                    width={12}
+                    height={12}
+                    />
                     </div>
             </>
         )
