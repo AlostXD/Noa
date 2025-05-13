@@ -1,16 +1,24 @@
 "use client"
 
-import NavbarDashboard from "../components/navbarDashboard";
+import React from 'react'
+import NavbarDashboard from "../../components/navbarDashboard"
 
 export default function Financeiro() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white flex flex-col">
       <NavbarDashboard />
-      <div className="p-4">
-        <h1 className="text-xl font-semibold mb-2">Minhas Faturas</h1>
-        <p className="text-sm text-gray-600 mb-4">
-          Você pode escolher outros produtos para ver as faturas
-        </p>
+
+      <div className="flex-1 p-4 flex flex-col">
+        <div className="flex flex-col items-center justify-center space-y-2">
+          <h1 className="text-2xl font-semibold">Minhas Faturas</h1>
+          <p className="text-sm text-gray-500">
+            Você pode escolher outros produtos para ver as faturas
+          </p>
+        </div>
+
+        <div className="mt-6 text-lg font-semibold">
+          Seus produtos
+        </div>
 
         <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-4 mb-6">
           <div className="bg-blue-800 text-white rounded-xl p-4 w-full sm:w-1/2">
@@ -23,20 +31,13 @@ export default function Financeiro() {
           </div>
         </div>
 
-        <div className="bg-gray-50 rounded-xl p-4">
-          <ul className="space-y-4">
-            <li className="flex justify-end items-center border-b pb-2">
-              <div className="w-16 h-6 bg-white rounded" />
-            </li>
-            <li className="flex justify-end items-center border-b pb-2">
-              <div className="w-16 h-6 bg-white rounded" />
-            </li>
-            <li className="flex justify-end items-center">
-              <div className="w-16 h-6 bg-white rounded" />
-            </li>
-          </ul>
+        <div className="mt-6 text-lg font-semibold">
+          Fatura
+        </div>
+
+        <div className="mt-2 flex-1 bg-white rounded-2xl p-4 border border-gray-300">
         </div>
       </div>
     </div>
-  );
+  )
 }
