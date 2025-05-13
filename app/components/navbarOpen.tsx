@@ -13,7 +13,7 @@ export default function NavbarOpen() {
 
   return (
     <>
-      <div className="lg:flex lg:items-center lg:justify-between p-8 lg:p-4 bg-linear-to-r from-g0 to-g1 text-white relative">
+      <div className="lg:flex lg:items-center lg:justify-between p-8 lg:p-4 bg-linear-to-r from-g0 to-g1 text-white fixed w-full z-50">
         <div className="flex flex-col lg:flex-row justify-center absolute top-5 left-5 lg:hidden">
           <button
         className="flex flex-col gap-1 lg:hidden"
