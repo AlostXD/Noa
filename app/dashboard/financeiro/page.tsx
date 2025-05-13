@@ -1,3 +1,4 @@
+"use client"
 
 import NavbarDashboard from "../components/navbarDashboard";
 
