@@ -32,9 +32,9 @@ export default function NavbarOpen() {
           className="hidden lg:block"
         />
         <ul className={` lg:flex lg:items-center lg:justify-center lg:gap-6 ${isSidebarOpen ? 'flex flex-col items-center justify-center' : 'hidden'} font-bold`}>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#">Home</a>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#">Soluções</a>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#">Empreendimentos</a>
+          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#home">Home</a>
+          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#sobre">Sobre</a>
+          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="#solucoes">Soluções</a>
           <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md" href="/dashboard">Acessar o Sistema</a>
         </ul>
       </div>
@@ -52,9 +52,9 @@ export default function NavbarOpen() {
               <span className='w-6 h-1 bg-t2 p-[1px]'></span>
             </button>
             <ul className='text-t2 flex flex-col items-center justify-center gap-6 font-bold'>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#">Home</Link></li>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#">Soluções</Link></li>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#">Empreendimentos</Link></li>
+              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#home">Home</Link></li>
+              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#sobre">Sobre</Link></li>
+              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="#solucoes">Soluções</Link></li>
               <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115"><Link href="/dashboard">Acessar o Sistema</Link></li>
             </ul>
             <Image
