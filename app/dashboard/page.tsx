@@ -13,7 +13,6 @@ import UserProfile from '../components/userProfile';
 export default function DashboardPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     async function checkAuth() {
       try {
@@ -62,25 +61,7 @@ export default function DashboardPage() {
                 />
 
               <div className="flex items-center gap-1">
-                
-                {/*
-                <Image
-                  src="/Login/user.png"
-                  alt="User"
-                  width={34}
-                  height={34}
-                />  A imagem esta com mais qualidade que a do user abaixo, mas se eu mexer vai da problema
-                */}
-                
                 <UserProfile style='flex-row' />
-                
-                <Image
-                  src="/Login/seta.png"
-                  alt="Seta"
-                  width={12}
-                  height={12}
-                />
-                
               </div>
             </div>
           </div>
@@ -97,10 +78,10 @@ export default function DashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[65%]">
               {[    
-                { img: "for.png", text: "Fórum", path: "/forum" },
-                { img: "fin.png", text: "Financeiro", path: "/financeiro" },
-                { img: "age.png", text: "Agendamento", path: "/agendamento" }, /*   */               
-                { img: "doc.png", text: "Documentos", path: "/documentos" },
+                { img: "for", text: "Fórum", path: "/dashboard/forum" },
+                { img: "fin", text: "Financeiro", path: "/dashboard/financeiro" },
+                { img: "age", text: "Agendamento", path: "/dashboard/agendamento" },          
+                { img: "doc", text: "Documentos", path: "/dashboard/documentos" },
               ].map((item, index) => (
                 <Link
                   key={index}
@@ -110,7 +91,7 @@ export default function DashboardPage() {
                     width={58}
                     height={58}
                     alt={item.text}
-                    src={`/Login/morador/${item.img}`}
+                    src={`/Login/morador/${item.img}.png`}
                   />
                   <div className="[font-family:'Poppins',Helvetica] font-bold text-white text-base tracking-[0] leading-[normal]">
                     {item.text}
