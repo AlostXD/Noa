@@ -10,7 +10,7 @@ export default function Financeiro() {
 
       <div className="flex-1 p-4 flex flex-col">
         <div className="flex flex-col items-center justify-center space-y-2">
-          <h1 className="text-2xl font-semibold">Minhas Faturas</h1>
+          <h1 className="text-4xl font-bold text-black">Minhas Faturas</h1>
           <p className="text-sm text-gray-500">
             Você pode escolher outros produtos para ver as faturas
           </p>
