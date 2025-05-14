@@ -67,87 +67,103 @@ export default function LoginPage() {
 
 
   return (
-    <>
-      <NavbarOpen />
-      <main className="flex min-h-screen items-center justify-center bg-gray-100">
-        <form
-          onSubmit={handleLogin}
-          className="bg-white p-8 rounded shadow-md w-96 flex flex-col gap-4"
-        >
-          <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
+    <main className="bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden">
+      <div className="absolute inset-0 w-full h-full">
+        <div className="absolute w-[50vw] h-[50vw] top-0 right-0 bg-[#f7f9ff] rounded-full transform translate-x-1/3 -translate-y-1/3" />
+        <div className="absolute w-[55vw] h-[55vw] top-0 right-0 rounded-full border-[3px] border-solid border-[#f7f9ff] transform translate-x-1/3  -translate-y-1/3" />
+        <div className="absolute w-[50vw] h-[50vw] top-1/4 left-0 rounded-full border-[3px] border-solid border-[#f7f9ff] transform -translate-x-1/3" />
+        <div className="absolute w-[40vw] h-[40vw] top-1/4 left-0 bg-[#f7f9ff] rounded-full transform -translate-x-1/3" />
+        <div className="absolute w-[30vw] h-[30vw] bottom-0 right-0 border-2 border-solid border-[#f1f4ff] transform translate-y-1/3" />
+        <div className="absolute w-[20vw] h-[30vw] bottom-0 right-0 border-2 border-solid border-[#f1f4ff] rotate-[139.09deg] transform -translate-x-1/2 translate-y-1/4" />
+      </div>
 
+      <form
+        onSubmit={handleLogin}
+        className="bg-white bg-opacity-50 w-full max-w-[428px] p-8 relative rounded-[40px]">
+
+        <h1 className="font-bold text-3xl text-blue-700 mb-[80px] mt-16 text-center">
+          Faça login
+        </h1>
+
+        <h2 className="font-semibold italic text-xl text-black mb-[33px] text-center">
+          Bem-vindo de volta!
+        </h2>
+
+        <div className="w-full space-y-[29px] mb-[30px]">
           <input
             type="email"
-            placeholder="Seu e-mail"
+            placeholder="E-mail"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="border rounded px-4 py-2"
+            className="h-[58px] bg-[#f1f4ff] rounded-[10px] p-5 font-light text-black text-opacity-70 text-base w-full border-2 border-solid  border-white focus:border-blue-600 focus:outline-none"
           />
 
           <input
             type="password"
-            placeholder="Sua senha"
+            placeholder="Senha"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
-            className="border rounded px-4 py-2"
+            className="h-[58px] bg-[#f1f4ff] rounded-[10px] p-5 font-light text-black text-opacity-70 text-base w-full border-2 border-solid  border-white focus:border-blue-600 focus:outline-none"
           />
-          
-          {loading &&
-            <button
-            type="submit"
-            className="bg-gray-800 text-white rounded py-2 transition"
-            disabled
-            >
-              Carregando...
-            </button>
-          }
-          {!loading &&
-            <button
-            type="submit"
-            className="bg-blue-600 text-white rounded py-2 hover:bg-blue-700 transition hover:cursor-pointer shadow-sm shadow-black hover:shadow-none"
-            >
-              Entrar
-            </button>
-          }
+        </div>
 
-          <div className="flex">
-            <button
-              onClick={providerLogin}
-              className="flex items-center justify-center gap-2 bg-gray-800 text-white rounded py-2 w-full hover:bg-gray-700 transition cursor-pointer shadow-sm shadow-black hover:shadow-none"
-            >
-              <Image
-                src="/login/github.png"
-                alt="Github"
-                width={30}
-                height={30}
-              />
-              Github
-            </button>
+        <div className="flex justify-end w-full mb-[20px]">
+          <button
+            type="button"
+            className="p-0 h-auto text-blue-800 text-sm hover:underline">
+            Esqueceu sua senha?
+          </button>
+        </div>
+
+        <div className="w-full space-y-[30px]">
+          <button
+            type="submit"
+            className="w-full h-[54px] bg-blue-600 rounded-[10px] shadow-[0px_10px_20px_#cad6ff] font-semibold text-white text-xl hover:bg-blue-700"
+            disabled={loading}>
+
+            {loading ? "Carregando..." : "Entrar"}
+          </button>
+
+          <div className="w-full h-auto py-2.5 text-sm text-[#494949] font-normal ">
+            Não tem conta? <a href="/sign-up" className="font-semibold text-blue-800 cursor-pointer hover:shadow-sm">Cadastrar-se</a>
           </div>
+        </div>
 
-          <div className="flex">
+
+        <div className="flex flex-col items-center gap-5 mt-[70px]">
+          <p className="text-black text-sm font-semibold">Continue com</p>
+
+          <div className="flex gap-2.5">
             <button
+              type="button"
               onClick={providerGoogleLogin}
-              className="flex items-center justify-center gap-2 bg-bg text-t1 rounded py-2 w-full hover:bg-gray-200 transition cursor-pointer shadow-sm shadow-black hover:shadow-none"
-            >
+              className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] rounded-[10px] flex items-center justify-center">
+
               <Image
                 src="/login/google.png"
                 alt="Google"
-                width={30}
-                height={30}
+                width={24}
+                height={24}
               />
-              Google
+            </button>
+
+            <button
+              type="button"
+              onClick={providerLogin}
+              className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] rounded-[10px] flex items-center justify-center">
+
+              <Image
+                src="/login/github.png"
+                alt="Github"
+                width={24}
+                height={24}
+              />
             </button>
           </div>
-          
-
-          <p className="text-center text-sm text-gray-600">
-            Não tem conta? <a href="/sign-up" className="text-blue-600 hover:underline">Cadastrar</a>
-          </p>
-        </form>
-      </main>
-    </>
+        </div>
+      </form>
+    </main>
   );
 }
