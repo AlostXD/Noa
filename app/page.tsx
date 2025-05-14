@@ -173,7 +173,7 @@ export default function Page() {
 
       <div className="min-h-screen flex flex-col items-center justify-center p-12" id='solucoes'>
         <h1 className='text-3xl lg:text-4xl font-bold'>Soluções para seu condomínio</h1>
-        <div className="flex flex-col xl:flex-row-reverse items-center justify-center m-auto">
+        <div className="flex flex-col lg:flex-row-reverse items-center justify-center m-auto">
               <div className="flex flex-col flex-wrap xl:flex-row items-center justify-center gap-4 p-4 lg:max-w-[800px]">
                 <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[350px] text-center'>
                   <Image

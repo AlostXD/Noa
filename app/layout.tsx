@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import Footer from "./components/footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,6 +41,7 @@ export default function RootLayout({
       >
         {children}
         <Toaster position="top-center" />
+        <Footer />
       </body>
     </html>
   );
