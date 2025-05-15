@@ -21,11 +21,11 @@ export default function Financeiro() {
         </div>
 
         <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-4 mb-6">
-          <div className="bg-blue-800 text-white rounded-xl p-4 w-full sm:w-1/2">
+          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
             <h2 className="font-semibold">Aluguel</h2>
             <p className="text-sm">Você paga por morar em um imóvel via Locar</p>
           </div>
-          <div className="bg-blue-800 text-white rounded-xl p-4 w-full sm:w-1/2">
+          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
             <h2 className="font-semibold">Condomínio</h2>
             <p className="text-sm">O valor do seu condomínio</p>
           </div>
