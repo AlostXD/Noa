@@ -6,7 +6,6 @@ import React from "react";
 import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
-import LogoutButton from "./sign-out";
 
 type props = {
     style: string;
@@ -49,7 +48,9 @@ export default function UserProfile({style}: props) {
                                 <li className="px-4 py-2 hover:bg-gray-100">
                                     <Link href="/dashboard/user/information">Informações</Link>
                                 </li>
-                                <LogoutButton />
+                                <li className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white">
+                                    <Link href="/sign-out">Sair</Link>
+                                </li>
                             </ul>
                         </div>
                     )}
