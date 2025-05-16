@@ -72,7 +72,7 @@ export default function LoginPage() {
   return (
     <>
       <NavbarOpen />
-      <main className="pt-28 bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden pt-20">
+      <main className="bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden pt-20">
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute w-[50vw] h-[50vw] top-0 right-0 bg-[#f7f9ff] rounded-full transform translate-x-1/3 -translate-y-1/3" />
           <div className="absolute w-[55vw] h-[55vw] top-0 right-0 rounded-full border-[3px] border-solid border-[#f7f9ff] transform translate-x-1/3  -translate-y-1/3" />
@@ -139,7 +139,7 @@ export default function LoginPage() {
                   className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center">
 
                   <Image
-                    src="/login/google.png"
+                    src="/Login/google.png"
                     alt="Google"
                     width={24}
                     height={24}
@@ -152,7 +152,7 @@ export default function LoginPage() {
                   className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center">
 
                   <Image
-                    src="/login/github.png"
+                    src="/Login/github.png"
                     alt="Github"
                     width={24}
                     height={24}
