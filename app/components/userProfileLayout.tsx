@@ -15,7 +15,7 @@ export default async function UserProfileLayout({ style }: props) {
     return (
       <div className={`flex ${style} lg:flex-row justify-center items-center gap-2 lg:gap-6 lg:m-5 text-t1 font-bold`}>
         <Image
-          src={session.user.image || "/login/User.png"}
+          src={session.user.image || "/Login/User.png"}
           alt="User-Profile-Icon"
           width={100}
           height={100}

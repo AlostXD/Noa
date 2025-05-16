@@ -26,7 +26,7 @@ export default function UserProfile({style}: props) {
                     >
 
                     <Image
-                        src={session.user.image || "/login/User.png"}
+                        src={session.user.image || "/Login/User.png"}
                         alt="User-Profile-Icon"
                         width={35}
                         height={35}
