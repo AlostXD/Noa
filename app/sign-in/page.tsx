@@ -72,7 +72,7 @@ export default function LoginPage() {
   return (
     <>
       <NavbarOpen />
-      <main className="bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden pt-20">
+      <main className="pt-28 bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden pt-20">
         <div className="absolute inset-0 w-full h-full">
           <div className="absolute w-[50vw] h-[50vw] top-0 right-0 bg-[#f7f9ff] rounded-full transform translate-x-1/3 -translate-y-1/3" />
           <div className="absolute w-[55vw] h-[55vw] top-0 right-0 rounded-full border-[3px] border-solid border-[#f7f9ff] transform translate-x-1/3  -translate-y-1/3" />
@@ -85,15 +85,15 @@ export default function LoginPage() {
           onSubmit={handleLogin}
           className="bg-white bg-opacity-50 w-full max-w-[428px] p-8 relative rounded-[40px] flex flex-col items-center shadow-2xl">
 
-          <h1 className="font-bold text-3xl text-blue-700 text-center">
+          <h1 className="font-bold text-3xl text-blue-700 text-center mb-[10px]">
             Faça login
           </h1>
 
-          <h2 className="font-semibold italic text-xl text-black mb-[33px] text-center">
+          <h2 className="font-semibold italic text-lg text-black mb-[20px] text-center">
             Bem-vindo de volta!
           </h2>
 
-          <div className="w-full space-y-[29px] mb-[30px]">
+          <div className="w-full space-y-[20px] mb-[20px]">
             <input
               type="email"
               placeholder="E-mail"
@@ -121,7 +121,7 @@ export default function LoginPage() {
             </button>
           </div>
 
-          <div className="w-full space-y-[30px]">
+          <div className="w-full space-y-[20px]">
             <button
               type="submit"
               className="w-full h-[54px] bg-blue-600 rounded-[10px] shadow-[0px_10px_20px_#cad6ff] font-semibold text-white text-xl hover:bg-blue-700 cursor-pointer transition-all duration-200 ease-in-out hover:scale-110"
