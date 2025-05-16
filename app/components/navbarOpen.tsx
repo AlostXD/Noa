@@ -32,10 +32,10 @@ export default function NavbarOpen() {
           className="hidden lg:block"
         />
         <ul className={` lg:flex lg:items-center lg:justify-center lg:gap-6 ${isSidebarOpen ? 'flex flex-col items-center justify-center' : 'hidden'} font-bold`}>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#home">Home</a>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#sobre">Sobre</a>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#solucoes">Soluções</a>
-          <a className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md" href="/dashboard">Acessar o Sistema</a>
+          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#home">Home</Link>
+          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#sobre">Sobre</Link>
+          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#solucoes">Soluções</Link>
+          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md" href="/dashboard">Acessar o Sistema</Link>
         </ul>
       </div>
       {isSidebarOpen && (

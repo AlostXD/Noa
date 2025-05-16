@@ -3,7 +3,6 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
-import LogoutButton from "../components/sign-out";
 import { toast } from "react-hot-toast";
 import NavbarOpen from "../components/navbarOpen";
 
