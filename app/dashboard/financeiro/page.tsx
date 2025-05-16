@@ -20,16 +20,20 @@ export default function Financeiro() {
           Seus produtos
         </div>
 
-        <div className="space-y-2 sm:flex sm:space-y-0 sm:space-x-4 mb-6">
-          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
-            <h2 className="font-semibold">Aluguel</h2>
-            <p className="text-sm">Você paga por morar em um imóvel via Locar</p>
-          </div>
-          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
-            <h2 className="font-semibold">Condomínio</h2>
-            <p className="text-sm">O valor do seu condomínio</p>
-          </div>
-        </div>
+
+        <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 font-normal">
+          <div className="bg-[#015388] text-white rounded-4xl  pt-6 pb-6 px-6 lg:px-9 flex-1">
+            <h2 className="font-extrabold text-xl mb-2">Aluguel</h2>
+            <p className="text-sm">
+              Você paga por morar em um imóvel via Locar
+            </p>
+         </div>
+         <div className="bg-[#015388] text-white rounded-4xl pt-6 pb-6 px-6 lg:px-9 flex-1">
+          <h2 className="font-extrabold text-xl mb-2">Condomínio</h2>
+          <p className="text-sm">
+            O valor do seu condomínio
+          </p>
+       </div>
 
         <div className="mt-6 text-lg font-semibold">
           Fatura

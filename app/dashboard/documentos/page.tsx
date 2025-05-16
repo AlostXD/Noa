@@ -7,31 +7,32 @@ export default function Documentos() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <NavbarDashboard />
-      <div className="flex-1 p-4 flex flex-col">
+      <div className="flex-1 pt-18 pb-18 px-12 lg:px-[198px] flex flex-col ">
         {/* Cabeçalho centralizado */}
-        <div className="flex flex-col items-center justify-center space-y-2 mb-6">
+        <div className="flex flex-col items-center justify-center space-y-4 mb-8">
           <h1 className="text-4xl font-bold text-black">Documentos</h1>
           <p className="text-sm text-gray-500 text-center">
             Tudo que você precisa saber sobre o condomínio, em um só lugar.
           </p>
         </div>
-
-        <div className="space-y-4 sm:flex sm:space-x-4 sm:space-y-0 mb-6">
-          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
-            <h2 className="font-semibold">Consulta Rápida</h2>
+        <div className="flex flex-col sm:flex-row gap-4 lg:gap-8 font-normal">
+          <div className="bg-[#015388] text-white rounded-4xl  pt-6 pb-6 px-6 lg:px-9 flex-1">
+            <h2 className="font-extrabold text-xl mb-2">Consulta Rápida</h2>
             <p className="text-sm">
               Visualize e baixe facilmente documentos oficiais como atas, relatórios e comunicados. Mantenha-se informado e participe ativamente.
             </p>
-          </div>
-          <div className="bg-[#015388] text-white rounded-xl p-4 w-full sm:w-1/2">
-            <h2 className="font-semibold">Transparência e Gestão</h2>
-            <p className="text-sm">
-              Tenha acesso a relatórios financeiros e informações operacionais que demonstram nosso compromisso com a clareza e a participação de todos.
-            </p>
-          </div>
-        </div>
+         </div>
+         <div className="bg-[#015388] text-white rounded-4xl pt-6 pb-6 px-6 lg:px-9 flex-1">
+          <h2 className="font-extrabold text-xl mb-2">Transparência e Gestão</h2>
+          <p className="text-sm">
+            Tenha acesso a relatórios financeiros e informações operacionais que demonstram nosso compromisso com a clareza e a participação de todos.
+          </p>
+       </div>
+     </div>
 
-        <div className="mt-6 text-lg font-semibold">
+
+
+        <div className="mt-12 text-lg font-semibold">
           Documentos
         </div>
 

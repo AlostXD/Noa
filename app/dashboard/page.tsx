@@ -66,7 +66,7 @@ export default function DashboardPage() {
             </div>
           </div>
 
-          <hr className="w-full max-w-[1330px] border-t border-white mb-8 lg:mb-16 " />
+          <hr className="w-full border-t border-white mb-8 lg:mb-16 " />
 
           <div className="w-full max-w-[700px] lg:max-w-[1330px] flex flex-col items-start">
             <div className="mb-6 lg:mb-10">
