@@ -32,9 +32,9 @@ export default function NavbarDashboard() {
             className="hidden lg:block"
         />
         <ul className={` lg:flex lg:items-center lg:justify-center lg:gap-6 ${isSidebarOpen ? 'flex flex-col items-center justify-center' : 'hidden'} font-bold`}>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/financeiro">
             <Image
-                src="/Login/financeiro.png"
+                src="/Login/morador/fin.png"
                 alt="Logo"
                 width={25}
                 height={25}
@@ -42,9 +42,9 @@ export default function NavbarDashboard() {
             />
             Financeiro
             </Link>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/forum">
                 <Image
-                src="/Login/forum.png"
+                src="/Login/morador/for.png"
                 alt="Logo"
                 width={25}
                 height={25}
@@ -52,9 +52,9 @@ export default function NavbarDashboard() {
             />
             Fórum
             </Link>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/documentos">
                 <Image
-                src="/Login/morador/documentos.png"
+                src="/Login/morador/doc.png"
                 alt="Logo"
                 width={25}
                 height={25}
@@ -88,9 +88,9 @@ export default function NavbarDashboard() {
                 <UserProfile style='flex-row' />
             </div>
             <ul className='text-t2 flex flex-col items-center justify-center gap-6 font-bold'>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/financeiro">
             <Image
-                src="/Login/financeiro.png"
+                src="/Login/morador/fin.png"
                 alt="Logo"
                 width={25}
                 height={25}
@@ -98,9 +98,9 @@ export default function NavbarDashboard() {
             />
             Financeiro
             </Link>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/forum">
                 <Image
-                src="/Login/forum.png"
+                src="/Login/morador/for.png"
                 alt="Logo"
                 width={25}
                 height={25}
@@ -108,9 +108,9 @@ export default function NavbarDashboard() {
             />
             Fórum
             </Link>
-            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="#">
+            <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 flex items-center gap-2" href="/dashboard/documentos">
                 <Image
-                src="/Login/morador/documentos.png"
+                src="/Login/morador/doc.png"
                 alt="Logo"
                 width={25}
                 height={25}
