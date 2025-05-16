@@ -1,7 +1,5 @@
 import React from 'react'
-import UserProfileLayout from '@/app/components/userProfileLayout'
 import NavbarDashboard from '@/app/components/navbarDashboard'
-import LogoutButton from '@/app/components/sign-out'
 import RegisterInfo from '@/app/components/registerInfo'
 
 

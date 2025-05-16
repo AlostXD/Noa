@@ -1,15 +1,7 @@
 import NavbarDashboard from '@/app/components/navbarDashboard'
 import React from 'react'
-import prisma from '@/lib/prisma'
-import { getSessionServer } from '@/lib/get-session-server'
 
-export default async function Plano() {
-    const user = await getSessionServer();
-
-    const tipos = prisma.usuario.findFirst({
-        where: { id: user?.user.id}
-    })
-    
+export default async function Plano() {    
   return (
     <>
         <NavbarDashboard />

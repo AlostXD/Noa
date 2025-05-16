@@ -38,10 +38,6 @@ export default function DashboardPage() {
     checkAuth();
   }, [router]);
 
-  async function handleSignOut() {
-    await authClient.signOut();
-    router.push("/sign-in");
-  }
 
   if (loading) {
     return (

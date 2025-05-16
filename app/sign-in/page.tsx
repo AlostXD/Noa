@@ -46,6 +46,7 @@ export default function LoginPage() {
       })
     } catch (error) {
       alert("Erro ao fazer login com o Github.")
+      alert(error)
       router.push("/sign-in")
     }
   }
@@ -62,6 +63,7 @@ export default function LoginPage() {
       })
     } catch (error) {
       alert("Erro ao fazer login com o Google.")
+      alert(error)
       router.push("/sign-in")
     }
   }
