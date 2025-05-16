@@ -79,7 +79,7 @@ export default function Page() {
 
 
 
-      <div id='sobre' className='bg-[url("/home/fundo-sobre.png")] bg-cover bg-no-repeat bg-center min-h-screen text-black flex flex-col items-center justify-center p-12'>
+      <div id='sobre' className='bg-[url("/Home/fundo-sobre.png")] bg-cover bg-no-repeat bg-center min-h-screen text-t2 flex flex-col items-center justify-center p-12'>
         <h1 className='text-4xl font-bold'>Sobre</h1>
         <div className="flex flex-col lg:flex-row items-center justify-center gap-4 p-4">
           <div className=' max-w-[800px] m-auto'>
