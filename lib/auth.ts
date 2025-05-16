@@ -32,4 +32,8 @@ export const auth = betterAuth({
     },
   },
   plugins: [nextCookies()],
+  allowedOrigins: [
+    "https://noa-tau.vercel.app", // Origem de produção
+    "http://localhost:3000", // Origem local para desenvolvimento
+  ],
 });
