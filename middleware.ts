@@ -5,18 +5,10 @@ export async function middleware(request: NextRequest) {
 
   if (!token) {
     console.log("Sem sessão, redirecionando...");
-    const response = NextResponse.redirect(new URL("/sign-in", request.url));
-    response.headers.set("Access-Control-Allow-Origin", "https://noa-tau.vercel.app/"); // Permitir todas as origens (ou especifique uma origem)
-    response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-    return response;
+    return NextResponse.redirect(new URL("/sign-in", request.url));
   }
 
-  const response = NextResponse.next();
-  response.headers.set("Access-Control-Allow-Origin", "https://noa-tau.vercel.app/"); // Permitir todas as origens (ou especifique uma origem)
-  response.headers.set("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  response.headers.set("Access-Control-Allow-Headers", "Content-Type");
-  return response;
+  return NextResponse.next();
 }
 
 export const config = {

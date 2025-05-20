@@ -2,7 +2,7 @@ import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 import prisma from "./prisma";
 import { nextCookies } from "better-auth/next-js";
-import { sendEmail } from "./email"; // sua função personalizada de envio
+import { sendEmail } from "./email";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -31,9 +31,11 @@ export const auth = betterAuth({
       });
     },
   },
-  plugins: [nextCookies()],
+  plugins: [
+    nextCookies()
+  ],
   allowedOrigins: [
-    "https://noa-tau.vercel.app", // Origem de produção
-    "http://localhost:3000", // Origem local para desenvolvimento
+    "https://noa-tau.vercel.app",
+    "http://localhost:3000",
   ],
 });
