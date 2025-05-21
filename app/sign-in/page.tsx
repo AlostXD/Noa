@@ -25,15 +25,13 @@ export default function LoginPage() {
       });
       
       if (error && !data) {
-        toast.error(error.message || "Erro ao fazer login.");
-        setLoading(false);
-      } else {
         toast.success("Login feito com sucesso!");
         redirect("/dashboard");
       }
     } catch (error) {
+      setLoading(false);
       console.error(error);
-      toast.error("Erro ao fazer login.");
+      toast.error(error as string);
     }
   }
 
