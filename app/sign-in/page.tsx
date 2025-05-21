@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
@@ -29,7 +29,7 @@ export default function LoginPage() {
         setLoading(false);
       } else {
         toast.success("Login feito com sucesso!");
-        router.push("/dashboard");
+        redirect("/dashboard");
       }
     } catch (error) {
       console.error(error);
