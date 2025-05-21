@@ -24,9 +24,9 @@ export default function LoginPage() {
         password,
       });
       
-      if (error && !data) {
+      if (!error && data) {
         toast.success("Login feito com sucesso!");
-        redirect("/dashboard");
+        router.push("/dashboard");
       }
     } catch (error) {
       setLoading(false);
