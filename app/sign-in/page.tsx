@@ -70,7 +70,7 @@ export default function LoginPage() {
 
 
   return (
-    <>/
+    <>
       <NavbarOpen />
       <main className="bg-white flex flex-col items-center justify-center w-full min-h-screen relative overflow-hidden pt-20">
         <div className="absolute inset-0 w-full h-full">
