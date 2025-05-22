@@ -1,12 +1,20 @@
 import { NextResponse } from "next/server";
 import { sendEmail } from "@/lib/email"; // ajuste o caminho se necessário
-import { getSessionServer } from "@/lib/get-session-server";
+import { auth } from "@/lib/auth";
 
 
 
 export async function GET() {
-    
-    const session = await getSessionServer();
+    const session = await auth.api.getSession(
+      {
+        query: {
+          disableCookieCache: true,
+        },
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }), // pass the headers
+      }
+    );
     const email = session?.user.email;
 
     if (!email) {
