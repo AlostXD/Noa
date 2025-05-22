@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { getSessionServer } from "@/lib/get-session-server";
+import { auth } from "@/lib/auth";
 
 export async function POST(request: Request) {
     const formData = await request.formData();
@@ -22,8 +22,17 @@ export async function POST(request: Request) {
     if (existingCpf) {
         return NextResponse.json({ error: "CPF já cadastrado. Caso seja sua primeira vez colocando suas informações, entre em contato com o suporte." }, { status: 400 });
     } else if (!existingCpf) {
-        try {
-                const session = await getSessionServer();
+            try {
+                const session = await auth.api.getSession(
+                {
+                    query: {
+                    disableCookieCache: true,
+                    },
+                    headers: new Headers({
+                    'Content-Type': 'application/json',
+                    }), // pass the headers
+                }
+                );
                 if (!session || !session.user || !session.user.id) {
                     throw new Error("User session is invalid or missing.");
                 }

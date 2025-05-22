@@ -7,6 +7,9 @@ import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 
+import { createAuthClient } from "better-auth/react";
+const { useSession } = createAuthClient()
+
 type props = {
     style: string;
 }
@@ -15,7 +18,15 @@ export default function UserProfile({style}: props) {
     
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     
-    const { data: session } = authClient.useSession(); 
+    const {
+        data: session,
+        error,
+    } = useSession()
+
+    if(!session && error) {
+        return <p className="text-red-500">Usuário não autenticado.</p>;
+    }
+
 
     if (session) {
         return (

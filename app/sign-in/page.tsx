@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { redirect, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { authClient } from "@/lib/auth-client";
 import { toast } from "react-hot-toast";
 import Image from "next/image";
@@ -18,23 +18,25 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
 
-    try {
-      const { data, error } = await authClient.signIn.email({
-        email,
-        password,
-      });
-      
-      if (!error && data) {
-        toast.success("Login feito com sucesso!");
-        router.push("/dashboard");
-      }
-    } catch (error) {
-      setLoading(false);
-      console.error(error);
-      toast.error(error as string);
-    }
+      await authClient.signIn.email({
+        email: email,
+        password: password,
+        fetchOptions: {
+            onSuccess() {
+              toast.success("Login feito com sucesso!");
+              router.push("/dashboard");
+            },
+            onError(ctx) {
+              setLoading(false);
+              console.error(ctx);
+              const errorMessage = ctx.response?.statusText || "Erro ao fazer login.";
+              toast.error(errorMessage);
+              router.push("/sign-in");
+            },
+          },
+        callbackURL: "/dashboard",
+      })  
   }
-
   async function providerLogin(){
     try{
       await authClient.signIn.social({

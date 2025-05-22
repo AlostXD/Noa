@@ -1,6 +1,6 @@
+import { auth } from "@/lib/auth";
 import Image from "next/image";
 import React from "react";
-import { getSessionServer } from "@/lib/get-session-server";
 
 type props = {
   style: string;
@@ -8,7 +8,16 @@ type props = {
 
 export default async function UserProfileLayout({ style }: props) {
   try {
-    const session = await getSessionServer();
+    const session = await auth.api.getSession(
+      {
+        query: {
+          disableCookieCache: true,
+        },
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }), // pass the headers
+      }
+    );
 
     if (!session) return <p className="text-red-500">Usuário não autenticado.</p>;
 

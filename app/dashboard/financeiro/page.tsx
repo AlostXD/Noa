@@ -1,9 +1,21 @@
-"use client"
-
 import React from 'react'
 import NavbarDashboard from "../../components/navbarDashboard"
+import prisma from '@/lib/prisma'
 
-export default function Financeiro() {
+export default async function Financeiro() {
+
+  const condo = await prisma.condominio.findFirst({
+    where: {
+      id: "1"
+    }
+  })
+
+  const data = await prisma.pagamento.findFirst({
+    where: {
+      condominioId: condo?.id
+    }
+  })
+
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <NavbarDashboard />
@@ -18,6 +30,13 @@ export default function Financeiro() {
 
         <div className="mt-6 text-lg font-semibold">
           Seus produtos
+        </div>
+
+        <div className="flex flex-col">
+          {data?.id}
+          {data?.status}
+          {data?.valor}
+          {data?.condominioId}
         </div>
 
 

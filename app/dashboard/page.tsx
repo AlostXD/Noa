@@ -8,7 +8,6 @@ import { toast } from "react-hot-toast";
 import Image from 'next/image';
 import Link from 'next/link';
 import UserProfile from '../components/userProfile';
-import { getSessionServer } from "@/lib/get-session-server";
 
 
 export default function DashboardPage() {
@@ -19,14 +18,14 @@ export default function DashboardPage() {
       try {
         
         // Verifica se o usuário está autenticado
-        const session = await getSessionServer()
+        const session = await authClient.getSession();
         console.log("Resposta da sessão:", session);
 
-        if (!session || !session || !session.session.token) {
+        if (session.data === null || session.data === undefined) {
           alert("Usuário não autenticado, redirecionando para a página de login.");
           router.push("/sign-in");
         } else {
-          toast.success(`Sessão verificada com sucesso, seja bem-vindo(a) ao seu Dashboard, ${session.user.name}!`);
+          toast.success(`Sessão verificada com sucesso, seja bem-vindo(a) ao seu Dashboard, ${session.data?.user.name}!`);
           setLoading(false); // Liberar o conteúdo
         }
       } catch (error) {

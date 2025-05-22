@@ -35,11 +35,6 @@ export const auth = betterAuth({
     nextCookies()
   ],
   advanced: {
-    useSecureCookies: true,
-        crossSubDomainCookies: {
-          enabled: true,
-          domain: "noa-tau.vercel.app", // Domain with a leading period
-      },
       defaultCookieAttributes: {
           secure: true,
           httpOnly: true,
@@ -52,3 +47,4 @@ export const auth = betterAuth({
     ],
   }
 });
+

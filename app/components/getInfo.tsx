@@ -1,14 +1,22 @@
 import React from 'react'
 import prisma from '@/lib/prisma'
-import { getSessionServer } from '@/lib/get-session-server';
+import { auth } from "@/lib/auth";
 
 export default async function GetInfo() {
-
-    const session = await getSessionServer();
+    const session = await auth.api.getSession(
+      {
+        query: {
+          disableCookieCache: true,
+        },
+        headers: new Headers({
+          'Content-Type': 'application/json',
+        }), // pass the headers
+      }
+    );
 
         const user = await prisma.usuario.findUnique({
             where: {
-                id: session?.user.id,
+                id: session?.user.id
             },
         });
     return (
