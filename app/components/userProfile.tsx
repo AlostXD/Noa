@@ -3,7 +3,6 @@
 
 import Image from "next/image";
 import React from "react";
-import { authClient } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
 
