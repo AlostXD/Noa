@@ -28,13 +28,12 @@ export default function LoginPage() {
             },
             onError(ctx) {
               setLoading(false);
-              console.error(ctx);
+              console.log(ctx);
               const errorMessage = ctx.response?.statusText || "Erro ao fazer login.";
               toast.error(errorMessage);
               router.push("/sign-in");
             },
-          },
-        callbackURL: "/dashboard",
+          }
       })  
   }
   async function providerLogin(){

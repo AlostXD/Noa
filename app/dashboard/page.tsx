@@ -19,15 +19,9 @@ export default function DashboardPage() {
         
         // Verifica se o usuário está autenticado
         const session = await authClient.getSession();
-        console.log("Resposta da sessão:", session);
-
-        if (session.data === null || session.data === undefined) {
-          alert("Usuário não autenticado, redirecionando para a página de login.");
-          router.push("/sign-in");
-        } else {
-          toast.success(`Sessão verificada com sucesso, seja bem-vindo(a) ao seu Dashboard, ${session.data?.user.name}!`);
-          setLoading(false); // Liberar o conteúdo
-        }
+        
+        setLoading(false); // Liberar o conteúdo
+        
       } catch (error) {
         console.error("Erro ao verificar sessão:", error);
         router.push("/");

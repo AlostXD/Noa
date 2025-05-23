@@ -34,6 +34,11 @@ export const auth = betterAuth({
   plugins: [
     nextCookies()
   ],
+  session: {
+    cookieCache: {
+      enabled: true,
+    }
+  },
   advanced: {
       defaultCookieAttributes: {
           secure: true,
