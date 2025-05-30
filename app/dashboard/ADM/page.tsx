@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-//import UserProfile from '../components/userProfile';
+import UserProfile from '@/app/components/userProfile';
 
 export default function AdminDashboardPage() {
   return (
@@ -19,23 +19,7 @@ export default function AdminDashboardPage() {
 
               <div className="flex items-center gap-1">
                 
-                {/*
-                <Image
-                  src="/Login/user.png"
-                  alt="User"
-                  width={34}
-                  height={34}
-                />  A imagem esta com mais qualidade que a do user abaixo, mas se eu mexer vai da problema
-                */}
-                
-                {/*<UserProfile style='flex-row' />*/}
-                
-                <Image
-                  src="/Login/seta.png"
-                  alt="Seta"
-                  width={12}
-                  height={12}
-                />
+                <UserProfile style='flex-row' />
                 
               </div>
             </div>
@@ -53,12 +37,12 @@ export default function AdminDashboardPage() {
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
               {[   
-                { img: "cad-adm.png", text: "Cadastros Gerais", path: "/agendamento" }, 
+                { img: "cad-adm.png", text: "Cadastros Gerais", path: "/dashboard/adm/cadastrogerais" }, 
                 { img: "for.png", text: "Fórum", path: "/forum" },
                 { img: "age.png", text: "Agendamento", path: "/agendamento" }, /*   */
-                { img: "comu-adm.png", text: "Comunicação Interna", path: "/agendamento" },
+                { img: "comu-adm.png", text: "Comunicação Interna", path: "/comunicacoes" },
                 { img: "fin.png", text: "Financeiro", path: "/financeiro" },
-                { img: "imp-adm.png", text: "Impressão de relatórios", path: "/documentos" },
+                { img: "imp-adm.png", text: "Documentos", path: "/documentos" },
               ].map((item, index) => (
                 <Link
                   key={index}
