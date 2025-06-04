@@ -12,19 +12,50 @@ model Usuario {
   nome         String
   email        String      @unique
   cpf          String      @unique
-  tipo         UsuarioTipo
   criadoEm     DateTime    @default(now())
   atualizadoEm DateTime    @updatedAt
-  condominioId String?
-  unidadeId    String?
   date         String
   endereco     String
   Feedback     Feedback[]
-  Condominio   Condominio? @relation(fields: [condominioId], references: [id])
   user         User        @relation(fields: [id], references: [id])
-  Unidade      Unidade?    @relation(fields: [unidadeId], references: [id])
+  UsuarioUnidade UsuarioUnidade[]
+  Admin        Admin[]
+  condominiosCriados Condominio[] @relation("CriadorRelation")
 
   @@map("usuario")
+}
+
+model Admin {
+  id            String   @id @default(uuid())
+  usuarioId     String
+  condominioId  String
+
+  usuario       Usuario  @relation(fields: [usuarioId], references: [id])
+  condominio    Condominio @relation(fields: [condominioId], references: [id])
+
+  criadoEm      DateTime @default(now())
+
+  @@unique([usuarioId, condominioId]) // Evita duplicações
+}
+
+
+model UsuarioUnidade {
+  id         String      @id @default(uuid())
+  usuarioId  String
+  unidadeId  String
+  papel      PapelUnidade
+  criadoEm   DateTime    @default(now())
+
+  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
+  unidade    Unidade     @relation(fields: [unidadeId], references: [id])
+
+  @@unique([usuarioId, unidadeId, papel]) // Evita duplicação do mesmo papel na mesma unidade
+}
+
+enum PapelUnidade {
+  MORADOR
+  OPERADOR
+  ADMIN
 }
 
 model Condominio {
@@ -32,11 +63,15 @@ model Condominio {
   nome        String
   endereco    String
   criadoEm    DateTime     @default(now())
+  criadorId   String
   feedbacks   Feedback[]
   manutencoes Manutencao[]
   pagamentos  Pagamento[]
   unidades    Unidade[]
-  Usuario     Usuario[]
+  Admin        Admin[]
+  Usuario     Usuario      @relation("CriadorRelation", fields: [criadorId], references: [id])
+
+  @@map("condominio")
 }
 
 model Unidade {
@@ -45,7 +80,9 @@ model Unidade {
   status       UnidadeStatus
   condominioId String
   condominio   Condominio    @relation(fields: [condominioId], references: [id])
-  moradores    Usuario[]
+  moradores    UsuarioUnidade[]
+
+  @@map("unidade")
 }
 
 model Pagamento {
@@ -55,6 +92,8 @@ model Pagamento {
   dataVencimento DateTime
   condominioId   String
   condominio     Condominio      @relation(fields: [condominioId], references: [id])
+
+  @@map("pagamento")
 }
 
 model Manutencao {
@@ -64,6 +103,8 @@ model Manutencao {
   status       ManutencaoStatus
   condominioId String
   condominio   Condominio       @relation(fields: [condominioId], references: [id])
+
+  @@map("manutencao")
 }
 
 model Feedback {
@@ -74,6 +115,8 @@ model Feedback {
   condominioId String
   condominio   Condominio @relation(fields: [condominioId], references: [id])
   usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+
+  @@map("feedback")
 }
 
 model User {
