@@ -1,51 +1,29 @@
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-import { auth } from "@/lib/auth";
 
 export async function POST(request: Request) {
     const formData = await request.formData();
     const nome = formData.get("name") as string;
     const endereco = formData.get("endereco") as string;
 
-    const existingCpf = await prisma.usuario.findUnique({
-        where: { cpf: cpf },
-    })
-    console.log(existingCpf);
-
-    if (!nome || !email || !cpf || !endereco || !date) {
-        return NextResponse.json({ error: "Preencha todos os campos." }, { status: 400 });
+    const authHeader = request.headers.get("Authorization");
+    if (!authHeader) {
+        return NextResponse.json({ error: "Token de autorização inválido." }, { status: 401 });
     }
-    // Verifica se o CPF já existe no banco de dados
-    if (existingCpf) {
-        return NextResponse.json({ error: "CPF já cadastrado. Caso seja sua primeira vez colocando suas informações, entre em contato com o suporte." }, { status: 400 });
-    } else if (!existingCpf) {
+    const userId = authHeader
+
+    if (!nome || !endereco || !userId) {
+        return NextResponse.json({ error: "Preencha todos os campos." }, { status: 400 });
+    } else if (nome || endereco || userId) {
             try {
-                const session = await auth.api.getSession(
-                {
-                    query: {
-                    disableCookieCache: true,
-                    },
-                    headers: new Headers({
-                    'Content-Type': 'application/json',
-                    }), // pass the headers
-                }
-                );
-                if (!session || !session.user || !session.user.id) {
-                    throw new Error("User session is invalid or missing.");
-                }
-                const userId = session.user.id;
-    
-                await prisma.usuario.create({
+                await prisma.condominio.create({
                     data: {
-                        nome,
-                        email,
-                        cpf,
-                        endereco,
-                        date,
-                        tipo: "MORADOR", // Replace "default" with the appropriate value for the 'tipo' field
-                        user: {
-                            connect: { id: userId },
-                        },
+                        nome: nome,
+                        endereco: endereco,
+                        Usuario: {
+                            connect: { id: userId }, // Assuming 'id' is the primary key in the 'Usuario' table
+                        }
+                        
                     },
                 });
             console.log("Funcionou");
