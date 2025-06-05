@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     const existingCpf = await prisma.usuario.findUnique({
         where: { cpf: cpf },
     })
-    console.log(existingCpf);
 
     if (!nome || !email || !cpf || !endereco || !date) {
         return NextResponse.json({ error: "Preencha todos os campos." }, { status: 400 });
@@ -45,13 +44,11 @@ export async function POST(request: Request) {
                         cpf,
                         endereco,
                         date,
-                        tipo: "MORADOR", // Replace "default" with the appropriate value for the 'tipo' field
                         user: {
                             connect: { id: userId },
                         },
                     },
                 });
-            console.log("Funcionou");
             return NextResponse.json({ message: "Dados registrados com sucesso!" });
         } catch (error) {
             console.error(error);

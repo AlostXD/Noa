@@ -4,23 +4,10 @@ import NavbarDashboard from '@/app/components/navbarDashboard'
 import React from 'react'
 import toast from 'react-hot-toast'
 import { useState } from 'react'
-import { createAuthClient } from "better-auth/react";
-const { useSession } = createAuthClient()
 
 export default function CadastrosGerais() {
     const [func, setFunc] = useState("Criar");
     
-    const {
-        data: session,
-        error,
-    } = useSession()
-
-    if (!session && error) {
-        console.log(error)
-    } else if (session) {
-        console.log(session);
-    }
-
   return (
     <>
         <NavbarDashboard />
@@ -36,12 +23,9 @@ export default function CadastrosGerais() {
                 <div className='flex flex-col items-center justify-center gap-4 w-full max-w-[700px] lg:max-w-[1330px] mt-8'>
                     <form action={
                         async (formData: FormData) => {
-                        const response = await fetch('/api/registercondominio', {
+                        const response = await fetch('/api/condominio', {
                             method: 'POST',
-                            headers: {
-                                'Authorization': `${session?.user.id}`,
-                            },
-                            body: formData,
+                            body: formData
                         });
 
                         if (!response.ok) {
@@ -68,7 +52,7 @@ export default function CadastrosGerais() {
                 <div className='flex flex-col items-center justify-center gap-4 w-full max-w-[700px] lg:max-w-[1330px] mt-8'>
                     <form action={
                         async (formData: FormData) => {
-                        const response = await fetch('/api/registercondominio', {
+                        const response = await fetch('/api/unidade', {
                             method: 'POST',
                             body: formData,
                         });
