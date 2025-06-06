@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
 import Image from 'next/image';
 import Link from 'next/link';
@@ -15,14 +16,16 @@ export default function DashboardPage() {
   useEffect(() => {
     async function checkAuth() {
       try {
+
+        const session = await authClient.getSession()
+
         setLoading(false); // Liberar o conteúdo
-        toast.success("Sessão verificada com sucesso!")
+        toast.success(`Sessão verificada com sucesso! Seja bem-vindo(a) ao Dashboard, ${session.data?.user.name}!`);
       } catch (error) {
         console.error("Erro ao verificar sessão:", error);
         router.push("/");
       }
     }
-
     checkAuth();
   }, [router]);
 

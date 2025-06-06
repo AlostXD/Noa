@@ -8,46 +8,46 @@ datasource db {
 }
 
 model Usuario {
-  id           String      @id
-  nome         String
-  email        String      @unique
-  cpf          String      @unique
-  criadoEm     DateTime    @default(now())
-  atualizadoEm DateTime    @updatedAt
-  date         String
-  endereco     String
-  Feedback     Feedback[]
-  user         User        @relation(fields: [id], references: [id])
-  UsuarioUnidade UsuarioUnidade[]
-  Admin        Admin[]
-  condominiosCriados Condominio[] @relation("CriadorRelation")
+  id                 String           @id
+  nome               String
+  email              String           @unique
+  cpf                String           @unique
+  criadoEm           DateTime         @default(now())
+  atualizadoEm       DateTime         @updatedAt
+  date               String
+  endereco           String
+  tipo               String?
+  Feedback           Feedback[]
+  user               User             @relation(fields: [id], references: [id])
+  UsuarioUnidade     UsuarioUnidade[]
+  Admin              Admin[]
+  condominiosCriados Condominio[]     @relation("CriadorRelation")
 
   @@map("usuario")
 }
 
 model Admin {
-  id            String   @id @default(uuid())
-  usuarioId     String
-  condominioId  String
+  id           String @id @default(uuid())
+  usuarioId    String
+  condominioId String
 
-  usuario       Usuario  @relation(fields: [usuarioId], references: [id])
-  condominio    Condominio @relation(fields: [condominioId], references: [id])
+  usuario    Usuario    @relation(fields: [usuarioId], references: [id])
+  condominio Condominio @relation(fields: [condominioId], references: [id])
 
-  criadoEm      DateTime @default(now())
+  criadoEm DateTime @default(now())
 
   @@unique([usuarioId, condominioId]) // Evita duplicações
 }
 
-
 model UsuarioUnidade {
-  id         String      @id @default(uuid())
-  usuarioId  String
-  unidadeId  String
-  papel      PapelUnidade
-  criadoEm   DateTime    @default(now())
+  id        String       @id @default(uuid())
+  usuarioId String
+  unidadeId String
+  papel     PapelUnidade
+  criadoEm  DateTime     @default(now())
 
-  usuario    Usuario     @relation(fields: [usuarioId], references: [id])
-  unidade    Unidade     @relation(fields: [unidadeId], references: [id])
+  usuario Usuario @relation(fields: [usuarioId], references: [id])
+  unidade Unidade @relation(fields: [unidadeId], references: [id])
 
   @@unique([usuarioId, unidadeId, papel]) // Evita duplicação do mesmo papel na mesma unidade
 }
@@ -68,18 +68,19 @@ model Condominio {
   manutencoes Manutencao[]
   pagamentos  Pagamento[]
   unidades    Unidade[]
-  Admin        Admin[]
+  Admin       Admin[]
   Usuario     Usuario      @relation("CriadorRelation", fields: [criadorId], references: [id])
 
   @@map("condominio")
 }
 
 model Unidade {
-  id           String        @id @default(uuid())
+  id           String           @id @default(uuid())
   numero       String
+  descricao    String
   status       UnidadeStatus
   condominioId String
-  condominio   Condominio    @relation(fields: [condominioId], references: [id])
+  condominio   Condominio       @relation(fields: [condominioId], references: [id])
   moradores    UsuarioUnidade[]
 
   @@map("unidade")

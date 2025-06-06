@@ -30,7 +30,7 @@ export default function AdminDashboardPage() {
           <div className="w-full max-w-[700px] lg:max-w-[1330px] flex flex-col items-start">
             <div className="mb-6 lg:mb-10">
               <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-xl tracking-[0] leading-[normal] mb-2">
-                Funções
+                Funções Administrativas
               </div>
               <hr className="w-[120px] bg-white h-[3px] border-0 p-0 m-0 mb-4"/>
             </div>
@@ -39,10 +39,10 @@ export default function AdminDashboardPage() {
               {[   
                 { img: "cad-adm.png", text: "Cadastros Gerais", path: "/dashboard/adm/cadastrogerais" }, 
                 { img: "for.png", text: "Fórum", path: "/forum" },
-                { img: "age.png", text: "Agendamento", path: "/agendamento" }, /*   */
-                { img: "comu-adm.png", text: "Comunicação Interna", path: "/comunicacoes" },
-                { img: "fin.png", text: "Financeiro", path: "/financeiro" },
-                { img: "imp-adm.png", text: "Documentos", path: "/documentos" },
+                { img: "age.png", text: "Agendamento", path: "/agendamento" },
+                { img: "comu-adm.png", text: "Controle", path: "/dashboard/adm/controle" },
+                { img: "fin.png", text: "Financeiro", path: "/dashboard/financeiro" },
+                { img: "imp-adm.png", text: "Documentos", path: "/dashboard/documentos" },
               ].map((item, index) => (
                 <Link
                   key={index}
