@@ -16,7 +16,11 @@ export async function GET(request: Request) {
     const condominio = await prisma.condominio.findUnique({
       where: { id },
       include: {
-        Admin: true,
+        Admin: {
+          include: {
+            usuario: true, // Inclui os dados do usuário relacionado
+          },
+        },
         unidades: true,
         feedbacks: true,
         manutencoes: true,

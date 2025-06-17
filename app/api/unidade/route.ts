@@ -130,3 +130,74 @@ export async function GET(request: Request) {
     );
   }
 }
+
+export async function DELETE(request: Request) {
+  const formData = await request.formData();
+  const unidadeNome = formData.get("unidadeNome") as string;
+  const condominioId = formData.get("condominioId") as string;
+
+  if (!unidadeNome || !condominioId) {
+    return NextResponse.json(
+      { error: "Preencha todos os campos obrigatórios." },
+      { status: 400 }
+    );
+  }
+
+  try {
+    const user = await auth.api.getSession({
+      query: {
+        disableCookieCache: true,
+      },
+      headers: request.headers,
+    });
+
+    if (!user?.user || !user?.user.id) {
+      return NextResponse.json(
+        { error: "Usuário não autenticado." },
+        { status: 401 }
+      );
+    }
+
+    // Verifica se o condomínio existe e pertence ao usuário
+    const condominio = await prisma.condominio.findUnique({
+      where: { id: condominioId },
+    });
+
+    if (!condominio || condominio.criadorId !== user.user.id) {
+      return NextResponse.json(
+        { error: "Condomínio não encontrado ou não pertence ao usuário." },
+        { status: 403 }
+      );
+    }
+
+    // Verifica se a unidade existe e pertence ao condomínio
+    const unidade = await prisma.unidade.findFirst({
+      where: {
+        numero: unidadeNome,
+        condominioId: condominioId,
+      },
+    });
+
+    if (!unidade) {
+      return NextResponse.json(
+        { error: "Unidade não encontrada ou não pertence ao condomínio." },
+        { status: 404 }
+      );
+    }
+
+    // Remove a unidade
+    await prisma.unidade.delete({
+      where: { id: unidade.id },
+    });
+
+    return NextResponse.json({
+      message: "Unidade removida com sucesso!",
+    });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { error: "Erro ao remover a unidade." },
+      { status: 500 }
+    );
+  }
+}
