@@ -1,6 +1,6 @@
 "use client";
 
-import NavbarDashboard from "@/app/components/navbarDashboard";
+import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
 import Link from "next/link";
 import React from "react";
 import { useState } from "react";
@@ -27,7 +27,7 @@ export default function Controle() {
 
   return (
     <>
-      <NavbarDashboard />
+      <NavbarDashboardAdm />
       <div className="flex flex-col items-center justify-center min-h-screen gap-4">
         <h1 className="font-bold text-xl md:text-3xl text-center">
           Escolha o condomínio desejado para acessar

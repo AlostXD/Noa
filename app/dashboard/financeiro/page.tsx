@@ -1,5 +1,5 @@
 import React from 'react'
-import NavbarDashboard from "../../components/navbarDashboard"
+import NavbarDashboard from "@/app/components/navbarDashboard"
 import prisma from '@/lib/prisma'
 
 export default async function Financeiro() {

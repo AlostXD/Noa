@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation"; // Use `useParams` para capturar o ID
 import React, { useEffect, useState } from "react";
-import NavbarDashboard from "@/app/components/navbarDashboard";
+import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
 import toast from "react-hot-toast";
 
 export default function CondominioDetalhes() {
@@ -134,7 +134,7 @@ export default function CondominioDetalhes() {
 
   return (
     <>
-      <NavbarDashboard />
+      <NavbarDashboardAdm />
       <div className="p-4 min-h-screen flex flex-col items-center">
         <h1 className="text-2xl md:text-4xl font-bold text-center">
           {condominio.nome}
