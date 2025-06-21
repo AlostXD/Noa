@@ -25,10 +25,11 @@ export default function CadastrosGerais() {
                     : "hover:bg-sky-800 hover:text-white"
                 }`}
               >
-                <img
-                  className="w-[15px] h-[15px]"
+                <Image
                   alt="Ícone"
                   src="/Login/adm/criarC.svg"
+                  width={15}
+                  height={15}
                 />
                 Criar condomínio
               </button>
@@ -43,10 +44,11 @@ export default function CadastrosGerais() {
                     : "hover:bg-sky-800 hover:text-white"
                 }`}
               >
-                <img
-                  className="w-[17px] h-4"
+                <Image
                   alt="Ícone"
                   src="/Login/adm/criarU.svg"
+                  width={17}
+                  height={16}
                 />
                 Criar Unidade
               </button>
@@ -61,10 +63,11 @@ export default function CadastrosGerais() {
                     : "hover:bg-sky-800 hover:text-white"
                 }`}
               >
-                <img
-                  className="w-3.5 h-[17px]"
+                <Image
                   alt="Ícone"
                   src="/Login/adm/transferir.svg"
+                  width={14}
+                  height={17}
                 />
                 Transferir
               </button>
