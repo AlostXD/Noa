@@ -7,12 +7,14 @@ import { usePathname } from "next/navigation";
 import UserProfile from "./userProfile";
 
 const navigationItems = [
+    { name: "Cadastro", path: "/dashboard/adm/cadastrogerais" },
+    { name: "Controle", path: "/dashboard/adm/controle" },
     { name: "Financeiro", path: "/dashboard/financeiro" },
     { name: "Fórum", path: "/dashboard/forum" },
     { name: "Docs", path: "/dashboard/documentos" },
 ];
 
-export default function NavbarDashboard() {
+export default function NavbarDashboardAdm() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
 

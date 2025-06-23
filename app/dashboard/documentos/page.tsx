@@ -1,13 +1,13 @@
 "use client"
 
 import React from 'react'
-import NavbarDashboard from "../../components/navbarDashboard"
+import NavbarDashboard from "@/app/components/navbarDashboard"
 
 export default function Documentos() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <NavbarDashboard />
-      <div className="flex-1 pt-18 pb-18 px-12 lg:px-[198px] flex flex-col ">
+      <div className="flex-1 pt-18 pb-18 px-12 2xl:px-[198px] flex flex-col ">
         {/* Cabeçalho centralizado */}
         <div className="flex flex-col items-center justify-center space-y-4 mb-8">
           <h1 className="text-4xl font-bold text-black">Documentos</h1>
