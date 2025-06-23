@@ -55,12 +55,12 @@ export default function CondominioDetalhes() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        toast.error(errorData.error);
+        toast.error(errorData.error || "Erro ao editar as informações.");
         return;
       }
 
       const result = await response.json();
-      toast.success(result.message);
+      toast.success(result.message || "Informações atualizadas com sucesso!");
       console.log("Informações atualizadas com sucesso:", result);
     } catch (error) {
       console.error("Erro ao editar as informações:", error);
@@ -77,12 +77,12 @@ export default function CondominioDetalhes() {
 
       if (!response.ok) {
         const errorData = await response.json();
-        toast.error(errorData.error);
+        toast.error(errorData.error || "Erro ao remover a unidade.");
         return;
       }
 
       const result = await response.json();
-      toast.success(result.message);
+      toast.success(result.message || "Unidade removida com sucesso!");
       console.log("Unidade removida com sucesso:", result);
     } catch (error) {
       console.error("Erro ao remover a unidade:", error);
@@ -92,19 +92,19 @@ export default function CondominioDetalhes() {
 
   const handleTransferUnidade = async (formData: FormData) => {
     try {
-      const response = await fetch("/api/unidade/transferir", {
+      const response = await fetch("/api/transferir", {
         method: "POST",
         body: formData,
       });
 
       if (!response.ok) {
         const errorData = await response.json();
-        toast.error(errorData.error);
+        toast.error(errorData.error || "Erro ao transferir a unidade.");
         return;
       }
 
       const result = await response.json();
-      toast.success(result.message);
+      toast.success(result.message || "Unidade transferida com sucesso!");
       console.log("Unidade transferida com sucesso:", result);
     } catch (error) {
       console.error("Erro ao transferir a unidade:", error);
