@@ -4,6 +4,7 @@ import { useParams } from "next/navigation"; // Use `useParams` para capturar o 
 import React, { useEffect, useState } from "react";
 import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
 import toast from "react-hot-toast";
+import Link from "next/link";
 
 export default function CondominioDetalhes() {
   const params = useParams(); // Captura os parâmetros dinâmicos da URL
@@ -12,10 +13,14 @@ export default function CondominioDetalhes() {
     id: string;
     nome: string;
     endereco: string;
-    unidades: { id: string; numero: string; descricao: string }[];
+    unidades: {
+      id: string;
+      numero: string;
+      descricao: string;
+      pagamentos: { id: string; valor: number; status: string }[]; // Pagamentos podem ser opcionais
+    }[];
     feedbacks: { id: string; mensagem: string }[];
     manutencoes: { id: string; descricao: string; status: string }[];
-    pagamentos: { id: string; valor: number; status: string }[];
     Admin: {
       id: string;
       usuario: { nome: string; email: string; cpf: string };
@@ -112,9 +117,71 @@ export default function CondominioDetalhes() {
     }
   };
 
+  const handleCreateUsuarioUnidade = async (formData: FormData) => {
+    try {
+      const response = await fetch("/api/userunidade", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast.error(errorData.error || "Erro ao criar o registro.");
+        return;
+      }
+
+      const result = await response.json();
+      toast.success(result.message || "Registro criado com sucesso!");
+      console.log("Registro criado com sucesso:", result);
+    } catch (error) {
+      console.error("Erro ao criar o registro:", error);
+      toast.error("Erro ao criar o registro.");
+    }
+  };
+
+  const handleAddPagamento = async (formData: FormData) => {
+    try {
+      const response = await fetch("/api/pagamento", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        toast.error(errorData.error || "Erro ao adicionar o pagamento.");
+        return;
+      }
+
+      const result = await response.json();
+      toast.success(result.message || "Pagamento adicionado com sucesso!");
+      console.log("Pagamento adicionado com sucesso:", result);
+    } catch (error) {
+      console.error("Erro ao adicionar o pagamento:", error);
+      toast.error("Erro ao adicionar o pagamento.");
+    }
+  };
+
+  const getStatusColor = (pagamentos: { status: string }[] | undefined) => {
+    if (!pagamentos || pagamentos.length === 0) return "bg-gray-300"; // Cor padrão caso não haja pagamentos
+
+    const hasAtrasado = pagamentos.some(
+      (p) => p.status.toUpperCase() === "ATRASADO"
+    );
+    const hasPendente = pagamentos.some(
+      (p) => p.status.toUpperCase() === "PENDENTE"
+    );
+    const allPago = pagamentos.every((p) => p.status.toUpperCase() === "PAGO");
+
+    if (hasAtrasado) return "bg-red-500"; // Vermelho se algum pagamento estiver atrasado
+    if (hasPendente) return "bg-orange-500"; // Laranja se algum pagamento estiver pendente
+    if (allPago) return "bg-green-500"; // Verde se todos os pagamentos estiverem pagos
+
+    return "bg-gray-300"; // Cor padrão para outros casos
+  };
+
   if (loading) {
     return (
-      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
+      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white">
         <h1 className="font-bold text-2xl">Carregando informações....</h1>
       </div>
     );
@@ -122,7 +189,7 @@ export default function CondominioDetalhes() {
 
   if (error) {
     return (
-      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
+      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white">
         <h1 className="font-bold text-2xl">{error}</h1>
       </div>
     );
@@ -136,26 +203,37 @@ export default function CondominioDetalhes() {
     <>
       <NavbarDashboardAdm />
       <div className="p-4 min-h-screen flex flex-col items-center">
-        <h1 className="text-2xl md:text-4xl font-bold text-center">
-          {condominio.nome}
-        </h1>
-        <p className="text-md md:text-lg text-center mt-2">
-          {condominio.endereco}
-        </p>
+        {/* Informações do Condomínio */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
+          <h1 className="text-2xl md:text-4xl font-bold text-center">
+            {condominio.nome}
+          </h1>
+          <p className="text-md md:text-lg text-center mt-2">
+            {condominio.endereco}
+          </p>
+        </div>
 
-        <div className="mt-8 w-full max-w-4xl">
+        {/* Unidades */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Unidades</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {condominio.unidades.map((unidade) => (
-              <div key={unidade.id} className="border rounded-lg p-4 shadow-sm">
+              <Link
+                key={unidade.id}
+                className={`border rounded-lg p-4 shadow-sm ${getStatusColor(
+                  unidade.pagamentos
+                )}`}
+                href={`/dashboard/adm/controle/unidade/${unidade.id}`}
+              >
                 <p className="font-semibold">Número: {unidade.numero}</p>
                 <p>Descrição: {unidade.descricao}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>
 
-        <div className="mt-8 w-full max-w-4xl">
+        {/* Feedbacks */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Feedbacks</h2>
           <div className="space-y-4">
             {condominio.feedbacks.map((feedback) => (
@@ -169,7 +247,8 @@ export default function CondominioDetalhes() {
           </div>
         </div>
 
-        <div className="mt-8 w-full max-w-4xl">
+        {/* Manutenções */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">Manutenções</h2>
           <div className="space-y-4">
             {condominio.manutencoes.map((manutencao) => (
@@ -186,24 +265,8 @@ export default function CondominioDetalhes() {
           </div>
         </div>
 
-        <div className="mt-8 w-full max-w-4xl">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Pagamentos</h2>
-          <div className="space-y-4">
-            {condominio.pagamentos.map((pagamento) => (
-              <div
-                key={pagamento.id}
-                className="border rounded-lg p-4 shadow-sm"
-              >
-                <p className="font-semibold">
-                  Valor: R$ {pagamento.valor.toFixed(2)}
-                </p>
-                <p>Status: {pagamento.status}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mt-8 w-full max-w-4xl">
+        {/* Administradores */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">
             Administradores
           </h2>
@@ -219,7 +282,7 @@ export default function CondominioDetalhes() {
         </div>
 
         {/* Formulário para editar informações */}
-        <div className="mt-8 w-full max-w-4xl">
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">
             Editar Informações
           </h2>
@@ -279,7 +342,7 @@ export default function CondominioDetalhes() {
         </div>
 
         {/* Formulário para remover unidade */}
-        <div className="mt-8 w-full max-w-4xl">
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">
             Remover Unidade
           </h2>
@@ -312,7 +375,7 @@ export default function CondominioDetalhes() {
         </div>
 
         {/* Formulário para transferir unidade */}
-        <div className="mt-8 w-full max-w-4xl">
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
           <h2 className="text-xl md:text-2xl font-bold mb-4">
             Transferir Unidade
           </h2>
@@ -368,6 +431,102 @@ export default function CondominioDetalhes() {
               className="bg-green-500 text-white rounded px-4 py-2 hover:bg-green-600"
             >
               Transferir Unidade
+            </button>
+          </form>
+        </div>
+
+        {/* Formulário para criar registro na tabela UsuarioUnidade */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            Adicionar Usuário à Unidade
+          </h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target as HTMLFormElement);
+              handleCreateUsuarioUnidade(formData);
+            }}
+            className="flex flex-col gap-4"
+          >
+            <input
+              type="email"
+              name="emailUsuario"
+              placeholder="Email do usuário"
+              className="border rounded-lg p-2"
+              required
+            />
+            <input
+              type="text"
+              name="unidadeNome"
+              placeholder="Nome da unidade"
+              className="border rounded-lg p-2"
+              required
+            />
+            <select
+              name="papel"
+              className="border rounded-lg p-2"
+              defaultValue="MORADOR"
+            >
+              <option value="MORADOR">Morador</option>
+              <option value="OPERADOR">Operador</option>
+              <option value="ADMIN">Admin</option>
+            </select>
+            <button
+              type="submit"
+              className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600 max-w-fit"
+            >
+              Adicionar
+            </button>
+          </form>
+        </div>
+
+        {/* Formulário para adicionar pagamentos */}
+        <div className="mt-8 w-full max-w-4xl bg-white shadow-md rounded-lg p-6">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">
+            Adicionar Pagamento
+          </h2>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              const formData = new FormData(e.target as HTMLFormElement);
+              formData.append("condominioId", condominio.id); // Adiciona o ID do condomínio
+              handleAddPagamento(formData);
+            }}
+            className="flex flex-col gap-4"
+          >
+            <select
+              name="unidadeNome"
+              className="border rounded-lg p-2"
+              defaultValue=""
+              required
+            >
+              <option value="" disabled>
+                Selecione uma unidade
+              </option>
+              {condominio.unidades.map((unidade) => (
+                <option key={unidade.id} value={unidade.numero}>
+                  {unidade.numero} - {unidade.descricao}
+                </option>
+              ))}
+            </select>
+            <input
+              type="number"
+              name="valor"
+              placeholder="Valor do pagamento"
+              className="border rounded-lg p-2"
+              required
+            />
+            <input
+              type="date"
+              name="dataVencimento"
+              className="border rounded-lg p-2"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600"
+            >
+              Adicionar Pagamento
             </button>
           </form>
         </div>

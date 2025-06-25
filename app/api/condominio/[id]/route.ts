@@ -21,10 +21,13 @@ export async function GET(request: Request) {
             usuario: true, // Inclui os dados do usuário relacionado
           },
         },
-        unidades: true,
+        unidades: {
+          include: {
+            pagamentos: true, // Inclui os pagamentos relacionados às unidades
+          },
+        },
         feedbacks: true,
         manutencoes: true,
-        pagamentos: true,
       },
     });
 

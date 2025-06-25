@@ -1,0 +1,199 @@
+"use client";
+
+import { useParams } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
+
+export default function UnidadeDetalhes() {
+  const params = useParams(); // Captura os parâmetros dinâmicos da URL
+  const unidadeId = params?.unidadeId; // Obtém o ID da unidade
+  const [unidade, setUnidade] = useState<{
+    id: string;
+    numero: string;
+    descricao: string;
+    status: string;
+    pagamentos: {
+      id: string;
+      dataVencimento: string;
+      valor: number;
+      status: string;
+    }[];
+    condominio: { id: string; nome: string };
+    moradores: { usuario: { nome: string; email: string; cpf: string } }[];
+  } | null>(null);
+  const [loading, setLoading] = useState(true); // Estado para exibir carregamento
+  const [error, setError] = useState<string | null>(null); // Estado para exibir erros
+
+  useEffect(() => {
+    if (unidadeId) {
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`/api/unidade/${unidadeId}`);
+          if (!response.ok) {
+            throw new Error("Erro ao buscar os detalhes da unidade.");
+          }
+          const result = await response.json();
+          setUnidade(result); // Define os dados da unidade
+        } catch (error) {
+          console.error(error);
+          setError("Erro ao carregar os detalhes da unidade.");
+        } finally {
+          setLoading(false); // Finaliza o carregamento
+        }
+      };
+
+      fetchData();
+    }
+  }, [unidadeId]);
+
+  const calcularStatusPagamento = (
+    dataVencimento: string,
+    statusAtual: "PENDENTE" | "PAGO" | "ATRASADO"
+  ): string => {
+    if (statusAtual === "PAGO") {
+      return "PAGO";
+    }
+
+    const hoje = new Date();
+    const vencimento = new Date(dataVencimento);
+
+    if (hoje > vencimento) {
+      return "ATRASADO";
+    } else if (hoje.toDateString() === vencimento.toDateString()) {
+      return "PENDENTE";
+    } else {
+      return "PENDENTE";
+    }
+  };
+
+  const getStatusColor = (status: string) => {
+    switch (status.toUpperCase()) {
+      case "ATRASADO":
+        return "bg-red-500";
+      case "PENDENTE":
+        return "bg-orange-500";
+      case "PAGO":
+        return "bg-green-500";
+      default:
+        return "bg-gray-300";
+    }
+  };
+
+  const formatDateToBrasilia = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleString("pt-BR", {
+      timeZone: "America/Sao_Paulo",
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    });
+  };
+
+  // const marcarComoPago = async (pagamentoId: string) => {
+  //   try {
+  //     const response = await fetch(`/api/pagamento/${pagamentoId}`, {
+  //       method: "PATCH",
+  //     });
+
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       alert(errorData.error || "Erro ao atualizar o pagamento.");
+  //       return;
+  //     }
+
+  //     alert("Pagamento atualizado para PAGO com sucesso!");
+  //     window.location.reload(); // Recarrega a página para atualizar os dados
+  //   } catch (error) {
+  //     console.error("Erro ao atualizar o pagamento:", error);
+  //     alert("Erro ao atualizar o pagamento.");
+  //   }
+  // };
+
+  if (loading) {
+    return (
+      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
+        <h1 className="font-bold text-2xl">Carregando informações....</h1>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
+        <h1 className="font-bold text-2xl">{error}</h1>
+      </div>
+    );
+  }
+
+  if (!unidade) {
+    return <p>Unidade não encontrada.</p>;
+  }
+
+  return (
+    <>
+      <NavbarDashboardAdm />
+      <div className="p-4 min-h-screen flex flex-col items-center">
+        {/* Informações da Unidade */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
+          <h1 className="text-2xl md:text-4xl font-bold text-center">
+            Unidade {unidade.numero}
+          </h1>
+          <p className="text-md md:text-lg text-center mt-2">
+            {unidade.descricao}
+          </p>
+          <p className="text-md md:text-lg text-center mt-2">
+            Status: {unidade.status}
+          </p>
+          <p className="text-md md:text-lg text-center mt-2">
+            Condomínio: {unidade.condominio.nome}
+          </p>
+        </div>
+
+        {/* Moradores */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Moradores</h2>
+          <div className="space-y-4">
+            {unidade.moradores.map((morador, index) => (
+              <div key={index} className="border rounded-lg p-4 shadow-sm">
+                <p className="font-semibold">Nome: {morador.usuario.nome}</p>
+                <p>Email: {morador.usuario.email}</p>
+                <p>CPF: {morador.usuario.cpf}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pagamentos */}
+        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
+          <h2 className="text-xl md:text-2xl font-bold mb-4">Pagamentos</h2>
+          <div className="space-y-4">
+            {unidade.pagamentos.map((pagamento) => {
+              const statusAtualizado = calcularStatusPagamento(
+                pagamento.dataVencimento,
+                pagamento.status as "PENDENTE" | "PAGO" | "ATRASADO"
+              );
+
+              return (
+                <div
+                  key={pagamento.id}
+                  className={`border rounded-lg p-4 shadow-sm ${getStatusColor(
+                    statusAtualizado
+                  )}`}
+                >
+                  <p className="font-semibold">
+                    Data de Vencimento:{" "}
+                    {formatDateToBrasilia(pagamento.dataVencimento)}
+                  </p>
+                  <p>Valor: R$ {pagamento.valor.toFixed(2)}</p>
+                  <p>Status: {statusAtualizado}</p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}

@@ -54,25 +54,6 @@ export default function CadastrosGerais() {
               </button>
 
               <hr className="w-full h-0.5 bg-white border-none" />
-
-              <button
-                onClick={() => setFunc("CriarT")}
-                className={`flex w-full h-[47px] items-center gap-3.5 px-3 rounded-[10px] cursor-pointer transition duration-500 ease-in-out ${
-                  func === "CriarT"
-                    ? "bg-[#005e971a] text-[#12266a]"
-                    : "hover:bg-sky-800 hover:text-white"
-                }`}
-              >
-                <Image
-                  alt="Ícone"
-                  src="/Login/adm/transferir.svg"
-                  width={14}
-                  height={17}
-                />
-                Transferir
-              </button>
-
-              <hr className="w-full h-0.5 bg-white border-none" />
             </div>
           </nav>
 
@@ -209,7 +190,7 @@ export default function CadastrosGerais() {
               </div>
 
               {/* Direita - Imagem */}
-              <div className="block md:hidden lg:block  w-full md:w-1/4 flex justify-end py-8 md:py-0">
+              <div className="md:hidden lg:block  w-full md:w-1/4 flex justify-end py-8 md:py-0">
                 <Image
                   className="object-contain"
                   alt="Homem"
