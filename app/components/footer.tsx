@@ -40,6 +40,12 @@ export default function Footer() {
                 <Link href="/" className="text-sm text-white font-normal cursor-pointer hover:shadow-sm">
                     Sobre nós
                 </Link>
+                <Link href="/" className="text-sm text-white font-normal cursor-pointer hover:shadow-sm">
+                    Serviços
+                </Link>
+                <Link href="/" className="text-sm text-white font-normal cursor-pointer hover:shadow-sm">
+                    Dúvidas Frequentes
+                </Link>
             </div>
             <div className="flex flex-col gap-4 items-center justify-center">
                 <h1 className="font-bold text-lg">Entre em contato</h1>
@@ -51,6 +57,7 @@ export default function Footer() {
                             width={50}
                             height={50}
                         />
+                        <span>2443 Oak Ridge Omaha, QA 45065</span>
                     </li>
                     <li>
                         <Image
@@ -59,6 +66,7 @@ export default function Footer() {
                             width={50}
                             height={50}
                         />
+                        <span>(38)207-8767</span>
                     </li>
                     <li>
                         <Image
@@ -67,6 +75,7 @@ export default function Footer() {
                             width={50}
                             height={50}
                         />
+                        <span>(34)99920-3156</span>
                     </li>
                     <li>
                         <Image
@@ -75,6 +84,7 @@ export default function Footer() {
                             width={50}
                             height={50}
                         />
+                        <span>support@site.com</span>
                     </li>
                 </ul>
             </div>
