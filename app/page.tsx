@@ -7,8 +7,8 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <div id='home' className='flex flex-col items-center justify-center min-h-screen m-auto p-24'>
-        <div className="flex flex-col items-center md:items-end md:flex-row bg-gradient-to-r from-g0 to-g1 w-[80%] max-w-[1200px] m-auto mt-4 rounded-[12px] overflow-hidden shadow-lg">
+      <div id='home' className='flex flex-col items-center justify-center  w-full min-h-screen 2xl:px-[198px] py-20'>
+        <div className="flex flex-col items-center md:items-end md:flex-row bg-gradient-to-r from-g0 to-g1 w-[80%] max-w-[1200px] m-auto rounded-[12px] overflow-hidden shadow-lg">
           <div className="flex flex-col items-start justify-center w-full gap-4 p-4 lg:p-8 mx-auto relative text-t2 text-center md:text-left">
             <h1 className='text-lg lg:text-2xl'>O futuro da gestão condominial chegou:</h1>
             <h2 className='font-bold text-lg lg:text-3xl'>Automatize processos, organize finanças e ganhe tempo para o que é essencial</h2>
@@ -22,51 +22,58 @@ export default function Page() {
             className='opacity-30'
           />
         </div>
-        <div className="flex flex-col items-center justify-center gap-4 p-4">
+        <div className="flex flex-col items-center justify-center gap-8 p-4">
           <h1 className='text-3xl font-bold'>Por que escolher o Noa?</h1>
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <li className='list-none flex items-center text-t1 max-w-[350px] shadow-2xl min-h-[150px] rounded-md p-4'>
+          <div className=" grid md:grid-cols-2 xl:grid-cols-4 gap-2 lg:gap-6 -full max-w-screen-xl mx-auto" >
+
+            <li className='list-none flex items-center text-t1 max-w-[320px] shadow-2xl min-h-[150px] rounded-2xl p-4 gap-2'>
+              <Image
+                src={"/Home/pq-2.png"}
+                alt="porque2"
+                width={50}
+                height={50}
+                className="translate-y-[-20px]"
+              />
+              <div className="flex flex-col max-w-[80%]">
+                <h2 className='font-bold'>Aumente a Ocupação</h2>
+                <p>Apartamentos são facilmente encontrados por interessados.</p>
+              </div>
+            </li>
+            <li className='list-none flex items-center text-t1 max-w-[320px] shadow-2xl min-h-[150px] rounded-2xl p-6 gap-4'>
               <Image
                 src={"/Home/pq-1.png"}
                 alt="porque1"
                 width={50}
                 height={50}
+                className="translate-y-[-20px]"
               />
               <div className="flex flex-col max-w-[80%]">
                 <h2 className='font-bold'>Sistema 100% WEB</h2>
                 <p>Acesse de qualquer dispositivo, lugar e hora</p>
               </div>
             </li>
-            <li className='list-none flex items-center text-t1 max-w-[350px] shadow-2xl min-h-[150px] rounded-md p-4'>
-              <Image
-                src={"/Home/pq-2.png"}
-                alt="porque2"
-                width={50}
-                height={50}
-              />
-              <div className="flex flex-col max-w-[80%]">
-                <h2 className='font-bold'>Aumente a Ocupação</h2>
-                <p>Apartamentos disponíveis são facilmente encontrados por interessados.</p>
-              </div>
-            </li>
-            <li className='list-none flex items-center text-t1 max-w-[350px] shadow-2xl min-h-[150px] rounded-md p-4'>
+            
+
+            <li className='list-none flex items-center text-t1 max-w-[320px] shadow-2xl min-h-[150px] rounded-2xl p-6 gap-4'>
               <Image
                 src={"/Home/pq-3.png"}
                 alt="porque3"
                 width={50}
                 height={50}
+                className="translate-y-[-20px]"
               />
               <div className="flex flex-col max-w-[80%]">
                 <h2 className='font-bold'>Preço acessível</h2>
                 <p>Contrate de acordo com a quantidade de unidades</p>
               </div>
             </li>
-            <li className='list-none flex items-center text-t1 max-w-[350px] shadow-2xl min-h-[150px] rounded-md p-4'>
+            <li className='list-none flex items-center text-t1 max-w-[320px] shadow-2xl min-h-[150px] rounded-2xl p-6 gap-4'>
               <Image
                 src={"/Home/pq-4.png"}
                 alt="porque4"
                 width={50}
                 height={50}
+                className="translate-y-[-20px]"
               />
               <div className="flex flex-col max-w-[80%]">
                 <h2 className='font-bold'>Funcionalidades inteligentes</h2>
