@@ -90,7 +90,7 @@ export default function NavbarDashboard() {
                             return (
                                 <div key={item.name} className="relative">
                                     <Link
-                                        href={item.path}
+                                        href={isActive ? "#" : item.path}
                                         className="text-white hover:bg-sky-900 block px-3 py-2 rounded-md text-base font-medium font-poppins"
                                         onClick={() => setIsMenuOpen(false)}
                                 >

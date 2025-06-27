@@ -104,12 +104,14 @@ model Manutencao {
 
 model Feedback {
   id           String     @id @default(uuid())
-  mensagem     String
-  criadoEm     DateTime   @default(now())
-  usuarioId    String
-  condominioId String
+  titulo       String
+  conteudo     String
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  autor        Usuario    @relation(fields: [autorId], references: [id])
+  autorId      String
   condominio   Condominio @relation(fields: [condominioId], references: [id])
-  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
+  condominioId String
 
   @@map("feedback")
 }
