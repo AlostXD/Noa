@@ -46,19 +46,19 @@ export default function UserProfile({ style }: props) {
             >
               <ul className="py-2 flex flex-col text-center">
                 <Link
-                  className="px-4 py-2 hover:bg-gray-100"
+                  className="px-4 py-2 hover:scale-115 transition-all duration-200 ease-in-out hover:text-blue-500"
                   href="/dashboard/user"
                 >
                   Perfil
                 </Link>
                 <Link
-                  className="px-4 py-2 hover:bg-gray-100"
+                  className="px-4 py-2 hover:scale-115 transition-all duration-200 ease-in-out hover:text-blue-500"
                   href="/dashboard/user/information"
                 >
                   Informações
                 </Link>
                 <Link
-                  className="px-4 py-2 hover:bg-gray-100"
+                  className="px-4 py-2 hover:scale-115 transition-all duration-200 ease-in-out hover:text-blue-500"
                   href="/dashboard/adm"
                 >
                   Painel administrativo
