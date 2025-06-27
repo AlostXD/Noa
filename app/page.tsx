@@ -175,7 +175,7 @@ export default function Page() {
         <h1 className='text-3xl lg:text-4xl font-bold'>Soluções para seu condomínio</h1>
         <div className="flex flex-col lg:flex-row-reverse items-center justify-center m-auto">
               <div className="flex flex-col flex-wrap xl:flex-row items-center justify-center gap-4 p-4 lg:max-w-[800px]">
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[350px] text-center'>
+                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
                   <Image
                     src={"/Home/solu1.png"}
                     alt="solucoes-1"
@@ -185,7 +185,7 @@ export default function Page() {
                   <h2 className='font-bold text-xl'>Reservas de Áreas Comuns</h2>
                   <p className='italic'>Agende salões de festas, quadras esportivas ou espaços coletivos de forma prática. Consulte disponibilidade e histórico de reservas.</p>
                 </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[350px] text-center'>
+                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
                   <Image
                     src={"/Home/solu2.png"}
                     alt="solucoes-2"
@@ -195,7 +195,7 @@ export default function Page() {
                   <h2 className='font-bold text-xl'>Acompanhamento Financeiro</h2>
                   <p className='italic'>Acesse extratos, boletos, taxas condominiais e confirme pagamentos. Receba alertas de vencimentos.</p>
                 </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[350px] text-center'>
+                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
                   <Image
                     src={"/Home/solu3.png"}
                     alt="solucoes-3"
@@ -205,7 +205,7 @@ export default function Page() {
                   <h2 className='font-bold text-xl'>Comunicação do Condomínio</h2>
                   <p className='italic'>Avisos oficiais, enquetes e fórum para discussões. Mantenha-se atualizado sobre decisões e eventos.</p>
                 </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[350px] text-center'>
+                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
                   <Image
                     src={"/Home/solu4.png"}
                     alt="solucoes-4"
