@@ -70,8 +70,7 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 w-[65%]">
               {[    
                 { img: "for", text: "Fórum", path: "/dashboard/forum" },
-                { img: "fin", text: "Financeiro", path: "/dashboard/financeiro" },
-                { img: "age", text: "Agendamento", path: "/dashboard/agendamento" },          
+                { img: "fin", text: "Financeiro", path: "/dashboard/financeiro" },   
                 { img: "doc", text: "Documentos", path: "/dashboard/documentos" },
               ].map((item, index) => (
                 <Link

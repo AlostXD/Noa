@@ -10,7 +10,7 @@ const navigationItems = [
     { name: "Cadastro", path: "/dashboard/adm/cadastrogerais" },
     { name: "Controle", path: "/dashboard/adm/controle" },
     { name: "Financeiro", path: "/dashboard/financeiro" },
-    { name: "Fórum", path: "/dashboard/forum" },
+    { name: "Fórum", path: "/dashboard/adm/forum" },
     { name: "Docs", path: "/dashboard/documentos" },
 ];
 

@@ -58,7 +58,6 @@ export default function UserProfile({ style }: props) {
                   Informações
                 </Link>
                 <Link
-                  className="px-4 py-2 hover:scale-115 transition-all duration-200 ease-in-out hover:text-blue-500"
                   href="/dashboard/adm"
                 >
                   Painel administrativo
