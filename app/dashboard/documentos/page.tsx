@@ -42,7 +42,7 @@ export default function Documentos() {
             <span className="font-medium">Ações</span>
           </div>
           <div className="flex-1 bg-white p-4 rounded-b-2xl border border-gray-300 border-t-0 overflow-auto">
-
+          Atualmente, não há documentos disponíveis para visualização. Por favor, verifique novamente mais tarde ou entre em contato com o administrador do condomínio para obter mais informações.
           </div>
         </div>
       </div>

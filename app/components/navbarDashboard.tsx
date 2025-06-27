@@ -39,7 +39,7 @@ export default function NavbarDashboard() {
                 </div>
 
                 {/* Nav Centro */}
-                <ul className="hidden mdgit:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-6">
+                <ul className="mdgit:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-6">
                     {navigationItems.map((item) => {
                         const isActive = pathname === item.path;
                         return (
@@ -61,7 +61,7 @@ export default function NavbarDashboard() {
                 {/* Direita */}
                 <div className="hidden md:flex items-center gap-2 ">
                     <Link
-                        className="flex items-center gap-2 transition-all duration-300 ease-in-out bg-slate-500/50 hover:scale-115 bg-g0 p-2 rounded-md text-white"
+                        className="flex items-center gap-2 transition-all duration-300 ease-in-ou hover:scale-115 bg-g0 p-2 rounded-md text-white"
                         href="/dashboard"
                     >
                         <Image

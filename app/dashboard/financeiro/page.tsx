@@ -27,18 +27,6 @@ export default async function Financeiro() {
     }
   })
 
-
-  const user = await prisma.usuario.findUnique({
-    where: {
-      id: session?.user.id
-    }
-  })
-
-  if (!user) {
-    return <div>Usuário não encontrado</div>
-  }
-
-
   return (
     <div className="min-h-screen bg-white flex flex-col">
       <NavbarDashboard />
