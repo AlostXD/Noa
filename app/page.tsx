@@ -171,58 +171,67 @@ export default function Page() {
       </div>
 
 
-      <div className="min-h-screen flex flex-col items-center justify-center p-12" id='solucoes'>
-        <h1 className='text-3xl lg:text-4xl font-bold'>Soluções para seu condomínio</h1>
-        <div className="flex flex-col lg:flex-row-reverse items-center justify-center m-auto">
-              <div className="flex flex-col flex-wrap xl:flex-row items-center justify-center gap-4 p-4 lg:max-w-[800px]">
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
-                  <Image
-                    src={"/Home/solu1.png"}
-                    alt="solucoes-1"
-                    width={100}
-                    height={100}
-                  />
-                  <h2 className='font-bold text-xl'>Reservas de Áreas Comuns</h2>
-                  <p className='italic'>Agende salões de festas, quadras esportivas ou espaços coletivos de forma prática. Consulte disponibilidade e histórico de reservas.</p>
-                </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
-                  <Image
-                    src={"/Home/solu2.png"}
-                    alt="solucoes-2"
-                    width={100}
-                    height={100}
-                  />
-                  <h2 className='font-bold text-xl'>Acompanhamento Financeiro</h2>
-                  <p className='italic'>Acesse extratos, boletos, taxas condominiais e confirme pagamentos. Receba alertas de vencimentos.</p>
-                </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
-                  <Image
-                    src={"/Home/solu3.png"}
-                    alt="solucoes-3"
-                    width={100}
-                    height={100}
-                  />
-                  <h2 className='font-bold text-xl'>Comunicação do Condomínio</h2>
-                  <p className='italic'>Avisos oficiais, enquetes e fórum para discussões. Mantenha-se atualizado sobre decisões e eventos.</p>
-                </li>
-                <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
-                  <Image
-                    src={"/Home/solu4.png"}
-                    alt="solucoes-4"
-                    width={100}
-                    height={100}
-                  />
-                  <h2 className='font-bold text-xl'>Documentos Compartilhados</h2>
-                  <p className='italic'>Regulamento interno, atas de reuniões e manuais em um local centralizado. Download seguro e organizado.</p>
-                </li>
-              </div>
-              <div className="flex flex-col items-center justify-center gap-4 p-4 text-center lg:max-w-[500px] lg:text-left shadow-2xl rounded-md">
-                <h1 className='text-2xl lg:text-4xl font-bold'>Sou Administrador do Condomínio</h1>
-                <p>Gerencie reservas, finanças, documentos e comunicação de forma profissional. Acesso a relatórios detalhados e suporte prioritário.</p>
-                <button className='px-8 py-4 rounded-md bg-g0 cursor-pointer text-t2 font-bold hover:bg-g1 transition-all duration-300 ease-in-out hover:scale-110'>Gerenciar condomínio</button>
-              </div>
+        <div className="min-h-screen flex flex-col items-center justify-center p-12" id='solucoes'>
+          <h1 className='text-3xl lg:text-4xl font-bold'>Soluções para seu condomínio</h1>
+          <div className="flex flex-col lg:flex-row-reverse items-center justify-center m-auto">
+            <div className="flex flex-col flex-wrap xl:flex-row items-center justify-center gap-4 p-4 lg:max-w-[800px]">
+              <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
+                <Image
+                  src={"/Home/solu1.png"}
+                  alt="solucoes-1"
+                  width={100}
+                  height={100}
+                />
+                <h2 className='font-bold text-xl'>Reservas de Áreas Comuns</h2>
+                <p className='italic'>Agende salões de festas, quadras esportivas ou espaços coletivos de forma prática. Consulte disponibilidade e histórico de reservas.</p>
+              </li>
+              <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
+                <Image
+                  src={"/Home/solu2.png"}
+                  alt="solucoes-2"
+                  width={100}
+                  height={100}
+                />
+                <h2 className='font-bold text-xl'>Acompanhamento Financeiro</h2>
+                <p className='italic'>Acesse extratos, boletos, taxas condominiais e confirme pagamentos. Receba alertas de vencimentos.</p>
+              </li>
+              <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
+                <Image
+                  src={"/Home/solu3.png"}
+                  alt="solucoes-3"
+                  width={100}
+                  height={100}
+                />
+                <h2 className='font-bold text-xl'>Comunicação do Condomínio</h2>
+                <p className='italic'>Avisos oficiais, enquetes e fórum para discussões. Mantenha-se atualizado sobre decisões e eventos.</p>
+              </li>
+              <li className='list-none flex flex-col items-center justify-center gap-4 p-4 max-w-[300px] text-center'>
+                <Image
+                  src={"/Home/solu4.png"}
+                  alt="solucoes-4"
+                  width={100}
+                  height={100}
+                />
+                <h2 className='font-bold text-xl'>Documentos Compartilhados</h2>
+                <p className='italic'>Regulamento interno, atas de reuniões e manuais em um local centralizado. Download seguro e organizado.</p>
+              </li>
+            </div>
+            
+            <div className="flex flex-col items-center justify-center gap-4 p-8 text-center lg:max-w-[500px] lg:text-left border-2 border-black-500 rounded-lg bg-white shadow-lg">
+              <h1 className='text-2xl lg:text-4xl font-bold text-black-700'>Sou Administrador do Condomínio</h1>
+              <p className="text-gray-700">Gerencie reservas, finanças, documentos e comunicação de forma profissional. Acesso a relatórios detalhados e suporte prioritário.</p>
+              <button className='
+                px-8 py-4 rounded-md 
+                bg-blue-900 hover:bg-blue-1000 
+                text-white font-bold 
+                transition-all duration-300 
+                ease-in-out hover:scale-110
+                shadow-md'>
+                Gerenciar Meu Condomínio
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
     </>
   )
 }
