@@ -47,9 +47,9 @@ export default function Footer() {
                     Dúvidas Frequentes
                 </Link>
             </div>
-            <div className="flex flex-col gap-4 items-center justify-center">
+            <div className="flex flex-col gap-4 items-start">
                 <h1 className="font-bold text-lg">Entre em contato</h1>
-                <ul className="flex flex-col gap-2 items-center justify-center">
+                <ul className="flex flex-col gap-2 items-start">
                     <li className="flex items-center gap-2">
                         <Image
                             src="/local.png"
