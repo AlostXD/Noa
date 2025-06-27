@@ -5,8 +5,6 @@ import { auth } from '@/lib/auth'
 import { headers } from 'next/headers'
 
 export default async function Financeiro() {
-
-
   // Pega a sessão do usuário autenticado
   const session = await auth.api.getSession({
         query: {
@@ -29,7 +27,17 @@ export default async function Financeiro() {
     }
   })
 
-  console.log(pagamento)
+
+  const user = await prisma.usuario.findUnique({
+    where: {
+      id: session?.user.id
+    }
+  })
+
+  if (!user) {
+    return <div>Usuário não encontrado</div>
+  }
+
 
   return (
     <div className="min-h-screen bg-white flex flex-col">

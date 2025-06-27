@@ -41,6 +41,10 @@ export default function registerInfo() {
       <input type="text" id="cpf" name="cpf" className="border rounded-md p-2 mb-4" placeholder="CPF" required/>
     </li>
     <li className="list-none flex flex-col text-t2">
+      <label htmlFor="cidade">Cidade</label>
+      <input type="text" id="cidade" name="cidade" className="border rounded-md p-2 mb-4" placeholder="Cidade" required/>
+    </li>
+    <li className="list-none flex flex-col text-t2">
       <label htmlFor="endereco">Endereço</label>
       <input type="text" id="endereco" name="endereco" className='border rounded-md p-2 mb-4' placeholder='Endereço' required/>
     </li>

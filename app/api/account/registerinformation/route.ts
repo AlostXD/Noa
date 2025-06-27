@@ -9,6 +9,7 @@ export async function POST(request: Request) {
   const cpf = formData.get("cpf") as string;
   const endereco = formData.get("endereco") as string;
   const date = formData.get("date") as string;
+  const cidade = formData.get("cidade") as string;
 
   
   const session = await auth.api.getSession({
@@ -48,6 +49,7 @@ export async function POST(request: Request) {
         data: {
           nome,
           email,
+          cidade,
           cpf,
           endereco,
           date,

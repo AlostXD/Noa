@@ -12,6 +12,7 @@ model Usuario {
   nome               String
   email              String           @unique
   cpf                String           @unique
+  cidade             String // Adicionado o campo cidade
   criadoEm           DateTime         @default(now())
   atualizadoEm       DateTime         @updatedAt
   date               String
