@@ -41,7 +41,7 @@ export default function NavbarDashboardAdm() {
                 </div>
 
                 {/* Nav Centro */}
-                <ul className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-6">
+                <ul className="md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 flex space-x-6">
                     {navigationItems.map((item) => {
                         const isActive = pathname === item.path;
                         return (
@@ -63,7 +63,7 @@ export default function NavbarDashboardAdm() {
                 {/* Direita */}
                 <div className="hidden md:flex items-center gap-2 ">
                     <Link
-                        className="flex items-center gap-2 transition-all duration-300 ease-in-out bg-slate-500/50 hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md text-white"
+                        className="flex items-center gap-2 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md text-white"
                         href="/dashboard"
                     >
                         <Image
@@ -88,7 +88,6 @@ export default function NavbarDashboardAdm() {
                 <div className="md:hidden absolute top-16 left-0 w-full z-50 [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
                     <div className="px-4 pt-4 pb-4 space-y-2">
                         {navigationItems.map((item) => {
-                            const isActive = pathname === item.path;
                             return (
                                 <div key={item.name} className="relative">
                                     <Link
