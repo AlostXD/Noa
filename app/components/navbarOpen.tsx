@@ -1,71 +1,119 @@
-"use client"
+"use client";
 
+import Image from "next/image";
+import React, { useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import Image from 'next/image'
-import React, { useState } from 'react'
-import Link from 'next/link'
+const navigationItems = [
+  { name: "Home", path: "/#home" },
+  { name: "Sobre", path: "/#sobre" },
+  { name: "Soluções", path: "/#solucoes" },
+  { name: "Acessar o Sistema", path: "/dashboard" },
+];
 
-
-
-
-export default function NavbarOpen() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false)
+export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <>
-      <div className="lg:flex lg:items-center lg:justify-between p-8 lg:p-4 bg-linear-to-r from-g0 to-g1 text-white fixed w-full z-50">
-        <div className="flex flex-col lg:flex-row justify-center absolute top-5 left-5 lg:hidden">
-          <button
-        className="flex flex-col gap-1 lg:hidden"
-        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-          >
-        <span className='w-6 h-1 bg-t2 p-[1px]'></span>
-        <span className='w-6 h-1 bg-t2 p-[1px]'></span>
-        <span className='w-6 h-1 bg-t2 p-[1px]'></span>
-          </button>
+      {/* Navbar fixa */}
+      <div className="fixed w-full h-14 md:h-20 z-50 bg-white backdrop-blur-2xl text-[#021024] flex items-center justify-between px-12 2xl:px-[198px] py-2 lg:py-4">
+        {/* Esquerda: Logo e botão mobile */}
+        <div className="flex items-center">
+          <div className="hidden md:block">
+            <Image 
+              src="/Logo.png" 
+              alt="Logo" 
+              width={100} 
+              height={50}  />
+          </div>
+          
+          <div className="md:hidden">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden text-black focus:outline-none"
+              aria-label="Abrir menu"
+            >
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
-        <Image
-          src="/Logo-B.png"
-          alt="Logo"
-          width={100}
-          height={100}
-          className="hidden lg:block"
-        />
-        <ul className={` lg:flex lg:items-center lg:justify-center lg:gap-6 ${isSidebarOpen ? 'flex flex-col items-center justify-center' : 'hidden'} font-bold`}>
-          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#home">Home</Link>
-          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#sobre">Sobre</Link>
-          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115" href="/#solucoes">Soluções</Link>
-          <Link className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115 bg-g0 p-2 rounded-md" href="/dashboard">Acessar o Sistema</Link>
+
+        {/* Menu desktop */}
+        <ul className="hidden md:flex items-center gap-4 text-base font-semibold font-poppins">
+          {navigationItems.map((item) => {
+            const isActive = pathname === item.path;
+            const isButton = item.name === "Acessar o Sistema";
+
+            return (
+              <li key={item.name}>
+                <Link
+                  href={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-lg transition ${
+                      isButton
+                        ? "bg-b1 text-sm text-white px-2 py-3 rounded-lg font-bold hover:px-4 hover:py-3 hover:bg-sky-800 transition-all duration-600 "
+                        : `border border-transparent hover:border-b1 hover:text-b1   px-3 py-1 rounded-md transition-all duration-600 ${isActive ? "text-b1" : ""}`
+                    }`}
+                >
+                  {item.name}
+                </Link>
+              </li>
+            );
+          })}
         </ul>
       </div>
-      {isSidebarOpen && (
-        <>
-          <div
-            className="fixed inset-0 bg-linear-to-b from-g0 to-g1 lg:hidden flex flex-col items-center justify-between z-50 gap-4 p-4"
-            >
+
+      {/* Menu mobile fullscreen */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-gradient-to-b from-g0 to-g1 flex flex-col items-center justify-between px-12 2xl:px-[198px] pt-6 pb-8 md:hidden">
+          {/* Fechar */}
+          <div className="w-full flex justify-end">
             <button
-              className="flex flex-col gap-1"
-              onClick={() => setIsSidebarOpen(false)}
+              onClick={() => setIsMenuOpen(false)}
+              className="text-white"
+              aria-label="Fechar menu"
             >
-              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
-              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
-              <span className='w-6 h-1 bg-t2 p-[1px]'></span>
+              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
             </button>
-            <ul className='text-t2 flex flex-col items-center justify-center gap-6 font-bold'>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="/#home">Home</Link></li>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="/#sobre">Sobre</Link></li>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-b1 hover:scale-115"><Link href="/#solucoes">Soluções</Link></li>
-              <li className="mb-4 lg:mb-0 transition-all duration-300 ease-in-out hover:text-g1 hover:scale-115"><Link href="/dashboard">Acessar o Sistema</Link></li>
-            </ul>
-            <Image
-              src="/Logo-B.png"
-              alt="Logo"
-              width={100}
-              height={100}
-            />
           </div>
-        </>
+
+          {/* Links */}
+          <ul className="flex flex-col items-center gap-6 text-white font-bold">
+            {navigationItems.map((item) => {
+              const isActive = pathname === item.path;
+              return (
+                <li key={item.name}>
+                  <Link
+                    href={item.path}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`text-lg hover:text-b1 transition ${
+                      isActive ? "text-b1" : ""
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* Logo inferior */}
+          <div className="flex justify-center">
+            <Image src="/Logo-B.png" alt="Logo" width={100} height={100} />
+          </div>
+        </div>
       )}
     </>
-  )
+  );
 }

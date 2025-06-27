@@ -17,26 +17,24 @@ model Usuario {
   date               String
   endereco           String
   tipo               String?
+  Admin              Admin[]
+  UsuarioUnidade     UsuarioUnidade[]
+  condominiosCriados Condominio[]     @relation("CriadorRelation")
   Feedback           Feedback[]
   user               User             @relation(fields: [id], references: [id])
-  UsuarioUnidade     UsuarioUnidade[]
-  Admin              Admin[]
-  condominiosCriados Condominio[]     @relation("CriadorRelation")
 
   @@map("usuario")
 }
 
 model Admin {
-  id           String @id @default(uuid())
+  id           String     @id @default(uuid())
   usuarioId    String
   condominioId String
+  criadoEm     DateTime   @default(now())
+  condominio   Condominio @relation(fields: [condominioId], references: [id])
+  usuario      Usuario    @relation(fields: [usuarioId], references: [id])
 
-  usuario    Usuario    @relation(fields: [usuarioId], references: [id])
-  condominio Condominio @relation(fields: [condominioId], references: [id])
-
-  criadoEm DateTime @default(now())
-
-  @@unique([usuarioId, condominioId]) // Evita duplicações
+  @@unique([usuarioId, condominioId])
 }
 
 model UsuarioUnidade {
@@ -45,17 +43,10 @@ model UsuarioUnidade {
   unidadeId String
   papel     PapelUnidade
   criadoEm  DateTime     @default(now())
+  unidade   Unidade      @relation(fields: [unidadeId], references: [id])
+  usuario   Usuario      @relation(fields: [usuarioId], references: [id])
 
-  usuario Usuario @relation(fields: [usuarioId], references: [id])
-  unidade Unidade @relation(fields: [unidadeId], references: [id])
-
-  @@unique([usuarioId, unidadeId, papel]) // Evita duplicação do mesmo papel na mesma unidade
-}
-
-enum PapelUnidade {
-  MORADOR
-  OPERADOR
-  ADMIN
+  @@unique([usuarioId, unidadeId, papel])
 }
 
 model Condominio {
@@ -64,12 +55,12 @@ model Condominio {
   endereco    String
   criadoEm    DateTime     @default(now())
   criadorId   String
+  Admin       Admin[]
+  Usuario     Usuario      @relation("CriadorRelation", fields: [criadorId], references: [id])
   feedbacks   Feedback[]
   manutencoes Manutencao[]
   Pagamento   Pagamento[]
   unidades    Unidade[]
-  Admin       Admin[]
-  Usuario     Usuario      @relation("CriadorRelation", fields: [criadorId], references: [id])
 
   @@map("condominio")
 }
@@ -79,10 +70,10 @@ model Unidade {
   numero       String
   descricao    String
   status       UnidadeStatus
-  pagamentos   Pagamento[] // Relacionamento com pagamentos
   condominioId String
-  condominio   Condominio       @relation(fields: [condominioId], references: [id])
   moradores    UsuarioUnidade[]
+  pagamentos   Pagamento[]
+  condominio   Condominio       @relation(fields: [condominioId], references: [id])
 
   @@map("unidade")
 }
@@ -93,8 +84,8 @@ model Pagamento {
   status         PagamentoStatus
   dataVencimento DateTime
   condominioId   String
+  unidadeId      String?
   condominio     Condominio      @relation(fields: [condominioId], references: [id])
-  unidadeId      String? // Campo opcional para associar a uma unidade
   unidade        Unidade?        @relation(fields: [unidadeId], references: [id])
 
   @@map("pagamento")
@@ -180,6 +171,12 @@ model Verification {
   updatedAt  DateTime?
 
   @@map("verification")
+}
+
+enum PapelUnidade {
+  MORADOR
+  OPERADOR
+  ADMIN
 }
 
 enum UsuarioTipo {

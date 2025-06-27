@@ -7,22 +7,15 @@ export default function Page() {
   return (
     <>
       <Navbar />
-      <div id='home' className='flex flex-col items-center justify-center  w-full min-h-screen 2xl:px-[198px] py-20'>
-        <div className="flex flex-col items-center md:items-end md:flex-row bg-gradient-to-r from-g0 to-g1 w-[80%] max-w-[1200px] m-auto rounded-[12px] overflow-hidden shadow-lg">
-          <div className="flex flex-col items-start justify-center w-full gap-4 p-4 lg:p-8 mx-auto relative text-t2 text-center md:text-left">
-            <h1 className='text-lg lg:text-2xl'>O futuro da gestão condominial chegou:</h1>
-            <h2 className='font-bold text-lg lg:text-3xl'>Automatize processos, organize finanças e ganhe tempo para o que é essencial</h2>
-            <h3 className='italic text-lg lg:text-1xl'>Um novo jeito de cuidar do que é nosso</h3>
+      <div id='home' className='flex flex-col items-center justify-center  w-full min-h-screen px-6 2xl:px-[198px] py-8 pt-[56px] md:pt-[80px]'>
+        <div className="relative flex items-center justify-start w-full max-w-[1200px] min-h-[40vh] rounded-[40px] overflow-hidden shadow-lg bg-[url('/Home/capa.png')] bg-cover bg-center bg-no-repeat mb-6 md:mb-10 lg:mb-16">
+          <div className="relative z-10 flex flex-col  w-full max-w-screen-md gap-4 p-6 md:p-10 text-white text-left">
+            <h1 className='text-md lg:text-2xl '>O futuro da gestão condominial chegou:</h1>
+            <h2 className='font-bold text-xl lg:text-3xl'>Automatize processos, organize finanças e ganhe tempo para o que é essencial</h2>
+            <h3 className='italic text-md lg:text-1xl'>Um novo jeito de cuidar do que é nosso</h3>
           </div>
-          <Image
-            src={"/Home/cidade.png"}
-            alt="Capa"
-            width={400}
-            height={400}
-            className='opacity-30'
-          />
         </div>
-        <div className="flex flex-col items-center justify-center gap-8 p-4">
+        <div className="flex flex-col items-center justify-center gap-8 p-4 mb-6 lg:mb-16">
           <h1 className='text-3xl font-bold'>Por que escolher o Noa?</h1>
           <div className=" grid md:grid-cols-2 xl:grid-cols-4 gap-2 lg:gap-6 -full max-w-screen-xl mx-auto" >
 
