@@ -3,6 +3,7 @@
 import NavbarDashboard from "@/app/components/navbarDashboard";
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import Image from "next/image";
 
 export default function CadastrosGerais() {
   const [func, setFunc] = useState("VerPosts");
@@ -62,8 +63,9 @@ export default function CadastrosGerais() {
   return (
     <>
       <NavbarDashboard />
-      <div className="bg-[#f1f5ff] flex flex-col w-full min-h-screen px-6 2xl:px-[198px] py-8">
+      <div className="bg-white flex flex-col w-full min-h-screen px-6 2xl:px-[198px] py-8">
         <div className="p-4 flex flex-col gap-6">
+          {/* Cabeçalho com botões ao lado direito */}
           <div className="flex items-center justify-between flex-wrap gap-4">
             <h1 className="text-3xl font-bold text-black">Fórum</h1>
             <div className="flex gap-4">
@@ -71,30 +73,43 @@ export default function CadastrosGerais() {
                 onClick={() => setFunc("VerPosts")}
                 className={`px-6 py-3 rounded-3xl font-semibold text-white transition-all ${
                   func === "VerPosts"
-                    ? "bg-[#015388]"
-                    : "bg-[#015388]/80 hover:bg-[#015388]"
+                    ? "bg-white !text-[#015388] border-2 border-[#015388] shadow-md"
+                    : "bg-[#015388] text-white hover:bg-[#01416b]"
                 }`}
               >
                 Ver postagens
               </button>
               <button
                 onClick={() => setFunc("CriarPosts")}
-                className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-medium transition"
+                className={`flex items-center gap-2 px-4 py-3 rounded-3xl font-semibold text-white transition-all ${
+                  func === "CriarPosts"
+                    ? "bg-white !text-[#015388] border-2 border-[#015388] shadow-md"
+                    : "bg-[#015388] text-white hover:bg-[#01416b]"
+                }`}
               >
-                Criar uma postagem
+                <Image
+                  src="/mais.png"
+                  alt="ícone de mais"
+                  width={20}
+                  height={20}
+                />
+                <span>Nova postagem</span>
               </button>
             </div>
           </div>
 
+          {/* Ver Postagens */}
           {func === "VerPosts" && (
-            <div className="flex flex-col items-center justify-center gap-4 w-full max-w-[700px] lg:max-w-[1330px] mt-8">
-              <h1 className="text-2xl font-bold mb-4">
+            <div className="flex flex-col items-center justify-center gap-4 w-full max-w-[1330px] mt-8">
+              <h2 className="text-2xl font-bold mb-4">
                 Selecione um condomínio
-              </h1>
+              </h2>
               <select
                 value={selectedCondominio}
                 onChange={(e) => setSelectedCondominio(e.target.value)}
-                className="border border-gray-300 rounded p-2 w-full max-w-[400px]"
+                className="w-full max-w-[450px] px-4 py-3 border border-gray-300 rounded-xl shadow-sm bg-white text-gray-700 
+                          hover:border-[#015388] hover:shadow-md transition duration-200 ease-in-out 
+                          outline-none focus:outline-none"
               >
                 <option value="" disabled>
                   Escolha um condomínio
@@ -105,40 +120,57 @@ export default function CadastrosGerais() {
                   </option>
                 ))}
               </select>
-              {selectedCondominio && (
-                <div className="mt-8 w-full">
-                  <h2 className="text-xl font-bold mb-4">
-                    Feedbacks do Condomínio
-                  </h2>
-                  {feedbacks.length > 0 ? (
-                    <div className="space-y-4">
-                      {feedbacks.map((feedback) => (
-                        <div
-                          key={feedback.id}
-                          className="border rounded-lg p-4 shadow-sm"
-                        >
-                          <h3 className="font-semibold text-lg">
-                            {feedback.titulo}
-                          </h3>
-                          <p className="text-gray-600">{feedback.conteudo}</p>
-                          <p className="text-sm text-gray-500 mt-2">
-                            Autor: {feedback.autor.nome}
-                          </p>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <p className="text-gray-600">Nenhum feedback encontrado.</p>
-                  )}
+
+              {/* Tabela de feedbacks */}
+              <div className="flex-1 w-full max-w-full mx-auto flex flex-col mt-6">
+                <div className="w-full relative mt-4">
+                  <h3 className="bg-[#F1F6FF] p-4 md:px-6 py-2 md:py-3 rounded-t-2xl font-bold text-center w-fit mr-4 mb-1 z-10 relative">
+                    Postagens
+                  </h3>
+                  <div className="bg-[#F1F6FF] min-h-[400px] p-6 rounded-b-2xl rounded-r-2xl space-y-4">
+                    {selectedCondominio ? (
+                      feedbacks.length > 0 ? (
+                        feedbacks.map((feedback) => (
+                          <div
+                            key={feedback.id}
+                            className="bg-white rounded-lg p-4 shadow-md flex flex-col"
+                          >
+                            <div>
+                              <h4 className="font-semibold text-lg">
+                                {feedback.titulo}
+                              </h4>
+                              <p className="text-gray-600">
+                                {feedback.conteudo}
+                              </p>
+                            </div>
+                            <p className="text-sm text-gray-500 mt-2 text-right">
+                              Autor: {feedback.autor.nome}
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-gray-600">
+                          Nenhum feedback encontrado.
+                        </p>
+                      )
+                    ) : (
+                      <p className="text-gray-500 italic">
+                        Selecione um condomínio para ver os feedbacks.
+                      </p>
+                    )}
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
           )}
 
+
           {func === "CriarPosts" && (
             <div className="flex flex-col items-center justify-center">
-              <h1 className="text-2xl font-bold mb-4">Fórum</h1>
-              <p className="text-gray-600">O local para você ser ouvido</p>
+              <h1 className="text-2xl font-bold mb-4">Queremos te ouvir!</h1>
+              <p className="text-gray-600">
+                Compartilhe sugestões, dúvidas ou reclamações
+              </p>
 
               <form
                 action={async (formData: FormData) => {
@@ -157,27 +189,27 @@ export default function CadastrosGerais() {
                   toast.success(result.message);
                   console.log("Feedback cadastrado com sucesso:", result);
                 }}
-                className="flex flex-col gap-[29px] mb-[30px]"
+                className="w-full max-w-[600px] bg-white rounded-2xl shadow-md p-6 flex flex-col gap-6 mt-6"
               >
                 <input
                   type="text"
                   name="titulo"
                   placeholder="Título"
-                  className="border border-gray-300 rounded px-4 py-2"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none hover:border-[#015388]  transition"
                   required
                 />
                 <textarea
                   name="conteudo"
                   placeholder="Conteúdo"
-                  className="border border-gray-300 rounded px-4 py-2"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl resize-none focus:outline-none hover:border-[#015388] transition"
                   rows={5}
                   required
                 ></textarea>
                 <select
                   name="condominioId"
-                  className="border border-gray-300 rounded px-4 py-2"
                   defaultValue=""
                   required
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-700 bg-white hover:border-[#015388]  transition"
                 >
                   <option value="" disabled>
                     Selecione um condomínio
@@ -190,7 +222,7 @@ export default function CadastrosGerais() {
                 </select>
                 <button
                   type="submit"
-                  className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
+                  className="w-full bg-[#015388] hover:bg-[#01416b] text-white font-semibold px-4 py-3 rounded-xl transition"
                 >
                   Enviar
                 </button>
