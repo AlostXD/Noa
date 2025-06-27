@@ -28,15 +28,15 @@ export default function Controle() {
   return (
     <>
       <NavbarDashboardAdm />
-      <div className="flex flex-col items-center justify-center min-h-screen gap-4">
-        <h1 className="font-bold text-xl md:text-3xl text-center">
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-6">
+        <h1 className="font-bold text-xl md:text-3xl text-center mb-8">
           Escolha o condomínio desejado para acessar
         </h1>
         {data.map((item) => {
           return (
             <Link
               key={item.id}
-              className="p-4 shadow-lg rounded-md bg-gray-100 hover:bg-gray-300 transition-all duration-300 hover:scale-110 w-full max-w-md text-center"
+              className="w-full sm:w-[90%] md:w-[70%] lg:w-[50%] max-w-2xl p-4 shadow-lg rounded-md bg-gray-100 hover:bg-gray-300 transition-all duration-300 hover:scale-110 w-full max-w-md text-center"
               href={`/dashboard/adm/controle/condominio/${item.id}`}
             >
               <h2 className="text-xl font-bold">{item.nome}</h2>

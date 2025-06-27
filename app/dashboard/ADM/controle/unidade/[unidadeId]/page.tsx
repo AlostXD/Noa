@@ -69,13 +69,13 @@ export default function UnidadeDetalhes() {
   const getStatusColor = (status: string) => {
     switch (status.toUpperCase()) {
       case "ATRASADO":
-        return "bg-red-500";
+        return "inline-block w-full font-semibold text-white bg-red-700 rounded-md px-3 py-1";
       case "PENDENTE":
-        return "bg-orange-500";
+        return "inline-block w-full font-semibold text-white bg-orange-600 rounded-md px-3 py-1";
       case "PAGO":
-        return "bg-green-500";
+        return "inline-block w-full font-semibold text-white bg-green-500 rounded-md px-3 py-1";
       default:
-        return "bg-gray-300";
+        return " inline-block w-full font-semibold text-white bg-gray-300 rounded-md px-3 py-1";
     }
   };
 
@@ -135,62 +135,74 @@ export default function UnidadeDetalhes() {
     <>
       <NavbarDashboardAdm />
       <div className="p-4 min-h-screen flex flex-col items-center">
-        {/* Informações da Unidade */}
-        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
-          <h1 className="text-2xl md:text-4xl font-bold text-center">
-            Unidade {unidade.numero}
-          </h1>
-          <p className="text-md md:text-lg text-center mt-2">
-            {unidade.descricao}
-          </p>
-          <p className="text-md md:text-lg text-center mt-2">
-            Status: {unidade.status}
-          </p>
-          <p className="text-md md:text-lg text-center mt-2">
-            Condomínio: {unidade.condominio.nome}
-          </p>
-        </div>
-
-        {/* Moradores */}
-        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Moradores</h2>
-          <div className="space-y-4">
-            {unidade.moradores.map((morador, index) => (
-              <div key={index} className="border rounded-lg p-4 shadow-sm">
-                <p className="font-semibold">Nome: {morador.usuario.nome}</p>
-                <p>Email: {morador.usuario.email}</p>
-                <p>CPF: {morador.usuario.cpf}</p>
-              </div>
-            ))}
+        {/* Informações da Unidade    border-t border-l border-r*/}
+        <div className="w-full max-w-4xl bg-white rounded-[30px] mb-8 font-poppins min-h-screen lg:min-h-[80vh] flex flex-col">
+          <div className="p-6 mb-8 border-1 rounded-t-[30px] border-slate-300">
+            <h1 className="text-2xl md:text-4xl font-bold text-center">
+              Unidade {unidade.numero}
+            </h1>
+            <p className="text-left mt-2 italic text-md md:text-lg md:text-lg text-black">
+              <span className="font-semibold italic rounded-md  inline-block">
+                {unidade.status}
+              </span>
+            </p>
+            <p className="text-sm text-left mt-2 italic">
+              <span className="">Descrição:</span>{" "}
+              {unidade.descricao}
+            </p>
+            <p className="text-sm text-left mt-2">
+              <span className="">Condomínio:</span>{" "}
+              {unidade.condominio.nome}
+            </p>
           </div>
-        </div>
 
-        {/* Pagamentos */}
-        <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
-          <h2 className="text-xl md:text-2xl font-bold mb-4">Pagamentos</h2>
-          <div className="space-y-4">
-            {unidade.pagamentos.map((pagamento) => {
-              const statusAtualizado = calcularStatusPagamento(
-                pagamento.dataVencimento,
-                pagamento.status as "PENDENTE" | "PAGO" | "ATRASADO"
-              );
+          <div className="flex flex-col items-center gap-6 border-b-1 border-l-1 border-r-1 border-slate-300 rounded-b-[30px] w-full flex-grow min-h-[40vh]">
+            {/* Moradores */}
+            <div className="w-[95%] bg-white shadow-md rounded-xl p-6 border border-slate-300/60">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">Moradores</h2>
+              <div className="space-y-4">
+                {unidade.moradores.map((morador, index) => (
+                  <div key={index} className="border rounded-lg p-4 ">
+                    <p className="font-semibold">
+                      Nome: {morador.usuario.nome}
+                    </p>
+                    <p>Email: {morador.usuario.email}</p>
+                    <p>CPF: {morador.usuario.cpf}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
 
-              return (
-                <div
-                  key={pagamento.id}
-                  className={`border rounded-lg p-4 shadow-sm ${getStatusColor(
-                    statusAtualizado
-                  )}`}
-                >
-                  <p className="font-semibold">
-                    Data de Vencimento:{" "}
-                    {formatDateToBrasilia(pagamento.dataVencimento)}
-                  </p>
-                  <p>Valor: R$ {pagamento.valor.toFixed(2)}</p>
-                  <p>Status: {statusAtualizado}</p>
-                </div>
-              );
-            })}
+            {/* Pagamentos */}
+            <div className="w-[95%]  bg-white shadow-md rounded-xl p-6 mb-4 border border-slate-300/50">
+              <h2 className="text-xl md:text-2xl font-bold mb-4">Pagamentos</h2>
+              <div className="space-y-4">
+                {unidade.pagamentos.map((pagamento) => {
+                  const statusAtualizado = calcularStatusPagamento(
+                    pagamento.dataVencimento,
+                    pagamento.status as "PENDENTE" | "PAGO" | "ATRASADO"
+                  );
+
+                  return (
+                    <div
+                      key={pagamento.id}
+                      className="w-[300px] border rounded-lg p-4 shadow-sm"
+                    >
+                      <p className="font-semibold">
+                        Data de Vencimento:{" "}
+                        {formatDateToBrasilia(pagamento.dataVencimento)}
+                      </p>
+                      <p>Valor: R$ {pagamento.valor.toFixed(2)}</p>
+                      <p className="pt-4">
+                        <span className={getStatusColor(statusAtualizado)}>
+                          {statusAtualizado}
+                        </span>
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
       </div>
