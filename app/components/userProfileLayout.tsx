@@ -2,7 +2,6 @@ import Image from "next/image";
 import React from "react";
 import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
-import GetInfo from "./getInfo";
 
 type props = {
   style: string;

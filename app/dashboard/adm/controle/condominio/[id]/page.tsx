@@ -431,7 +431,7 @@ export default function CondominioDetalhes() {
                       <input
                         type="email"
                         name="adminEmail"
-                        placeholder="Digite o email do administrador"
+                        placeholder="Digite o email do administrador (Caso queira adicionar ou remover, somente digite novamente o email)"
                         className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none hover:border-[#015388] transition"
                       />
 
@@ -464,13 +464,21 @@ export default function CondominioDetalhes() {
                     >
                       Nome da unidade
                     </label>
-                    <input
-                      type="text"
+                    <select
                       name="unidadeNome"
-                      placeholder="Digite o nome da unidade"
-                      className="border border-gray-300 rounded p-2 w-full mb-4"
+                      className="border rounded-lg p-2 m-4"
+                      defaultValue=""
                       required
-                    />
+                    >
+                      <option value="" disabled>
+                        Selecione uma unidade
+                      </option>
+                      {condominio.unidades.map((unidade) => (
+                        <option key={unidade.id} value={unidade.numero}>
+                          {unidade.numero} - {unidade.descricao}
+                        </option>
+                      ))}
+                    </select>
                     <button
                       type="submit"
                       className="bg-red-500 text-white rounded px-4 py-2 hover:bg-red-600"
@@ -500,13 +508,21 @@ export default function CondominioDetalhes() {
                     >
                       Nome da unidade
                     </label>
-                    <input
-                      type="text"
+                    <select
                       name="unidadeNome"
-                      placeholder="Digite o nome da unidade"
-                      className="border border-gray-300 rounded p-2 w-full mb-4"
+                      className="border rounded-lg p-2"
+                      defaultValue=""
                       required
-                    />
+                    >
+                      <option value="" disabled>
+                        Selecione uma unidade
+                      </option>
+                      {condominio.unidades.map((unidade) => (
+                        <option key={unidade.id} value={unidade.numero}>
+                          {unidade.numero} - {unidade.descricao}
+                        </option>
+                      ))}
+                    </select>
                     <label
                       htmlFor="novoResponsavelEmail"
                       className="block mb-2 font-semibold"
@@ -565,13 +581,21 @@ export default function CondominioDetalhes() {
                       className="border rounded-lg p-2"
                       required
                     />
-                    <input
-                      type="text"
+                    <select
                       name="unidadeNome"
-                      placeholder="Nome da unidade"
                       className="border rounded-lg p-2"
+                      defaultValue=""
                       required
-                    />
+                    >
+                      <option value="" disabled>
+                        Selecione uma unidade
+                      </option>
+                      {condominio.unidades.map((unidade) => (
+                        <option key={unidade.id} value={unidade.numero}>
+                          {unidade.numero} - {unidade.descricao}
+                        </option>
+                      ))}
+                    </select>
                     <select
                       name="papel"
                       className="border rounded-lg p-2"

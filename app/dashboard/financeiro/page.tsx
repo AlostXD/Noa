@@ -116,7 +116,6 @@ export default async function Financeiro() {
                   </span>
                 </div>
               ))}
-              <p className="text-gray-600">Nenhuma fatura encontrada.</p>
             </div>
           </div>
         </div>

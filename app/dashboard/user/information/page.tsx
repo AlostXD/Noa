@@ -5,7 +5,6 @@ import RegisterInfo from '@/app/components/registerInfo'
 
 
 export default async function userPage() {
-
   return (
     <>
         <NavbarDashboard/>

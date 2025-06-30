@@ -3,6 +3,8 @@
 import { useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
+import Image from "next/image";
+import QRCode from "qrcode";
 
 export default function UnidadeDetalhes() {
   const params = useParams(); // Captura os parâmetros dinâmicos da URL
@@ -23,6 +25,66 @@ export default function UnidadeDetalhes() {
   } | null>(null);
   const [loading, setLoading] = useState(true); // Estado para exibir carregamento
   const [error, setError] = useState<string | null>(null); // Estado para exibir erros
+  const [pix, setPix] = useState<{
+    qrCodeBase64: string;
+    payload: string;
+  } | null>(null);
+
+  async function gerar(unidadeId: string) {
+    try {
+      const res = await fetch("/api/gerarpix", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ unidadeId }), // Envia no corpo da requisição
+      });
+
+      if (!res.ok) {
+        throw new Error();
+      }
+
+      const data = await res.json();
+
+      if (data.payload) {
+        const qr = await QRCode.toDataURL(data.payload, {
+          errorCorrectionLevel: "H",
+          type: "image/png",
+          margin: 2,
+          color: {
+            dark: "#000000",
+            light: "#ffffff",
+          },
+        });
+
+        setPix({
+          ...data,
+          qrCodeBase64: qr,
+        });
+      }
+    } catch (error) {
+      console.error("Erro ao gerar Pix:", error);
+    }
+  }
+
+  const atualizarStatusPagamento = async (pagamentoId: string) => {
+    try {
+      const res = await fetch(`/api/pagamento/${pagamentoId}`, {
+        method: "PATCH",
+      });
+
+      if (!res.ok) {
+        throw new Error("Erro ao atualizar o status do pagamento.");
+      }
+
+      const data = await res.json();
+      alert(data.message);
+      window.location.reload(); // Recarrega a página para atualizar os dados
+    } catch (error) {
+      console.error("Erro ao atualizar pagamento:", error);
+      alert("Erro ao atualizar o pagamento.");
+    }
+  };
 
   useEffect(() => {
     if (unidadeId) {
@@ -91,26 +153,6 @@ export default function UnidadeDetalhes() {
     });
   };
 
-  // const marcarComoPago = async (pagamentoId: string) => {
-  //   try {
-  //     const response = await fetch(`/api/pagamento/${pagamentoId}`, {
-  //       method: "PATCH",
-  //     });
-
-  //     if (!response.ok) {
-  //       const errorData = await response.json();
-  //       alert(errorData.error || "Erro ao atualizar o pagamento.");
-  //       return;
-  //     }
-
-  //     alert("Pagamento atualizado para PAGO com sucesso!");
-  //     window.location.reload(); // Recarrega a página para atualizar os dados
-  //   } catch (error) {
-  //     console.error("Erro ao atualizar o pagamento:", error);
-  //     alert("Erro ao atualizar o pagamento.");
-  //   }
-  // };
-
   if (loading) {
     return (
       <div className="flex flex-row min-h-screen items-center text-white justify-center w-full bg-white [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
@@ -147,10 +189,12 @@ export default function UnidadeDetalhes() {
               </span>
             </p>
             <p className="text-sm text-left mt-10">
-              <span className="font-semibold">Condomínio:</span> {unidade.condominio.nome}
+              <span className="font-semibold">Condomínio:</span>{" "}
+              {unidade.condominio.nome}
             </p>
             <p className="text-sm text-left mt-2 italic">
-              <span className="font-semibold">Descrição:</span> {unidade.descricao}
+              <span className="font-semibold">Descrição:</span>{" "}
+              {unidade.descricao}
             </p>
           </div>
 
@@ -196,6 +240,37 @@ export default function UnidadeDetalhes() {
                           {statusAtualizado}
                         </span>
                       </p>
+                      {statusAtualizado !== "PAGO" && (
+                        <button
+                          onClick={() => atualizarStatusPagamento(pagamento.id)}
+                          className="mt-4 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded"
+                        >
+                          Marcar como Pago
+                        </button>
+                      )}
+                      <button
+                        onClick={() => gerar(unidade.id)}
+                        className="mt-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded"
+                      >
+                        Gerar QR Code Pix
+                      </button>
+
+                      {pix && (
+                        <div className="mt-4 flex flex-col items-center">
+                          <Image
+                            src={pix.qrCodeBase64}
+                            alt="QR Code Pix"
+                            width={160}
+                            height={160}
+                          />
+                          <p className="mt-2 font-semibold">Copia e Cola:</p>
+                          <textarea
+                            readOnly
+                            value={pix.payload}
+                            className="w-full p-2 border mt-1 rounded bg-gray-100 text-sm"
+                          />
+                        </div>
+                      )}
                     </div>
                   );
                 })}
