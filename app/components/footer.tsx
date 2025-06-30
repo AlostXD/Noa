@@ -11,7 +11,7 @@ export default function Footer() {
                 <ul className="flex gap-2 items-center justify-center">
                     <Link href="https://www.instagram.com/noa.condominios/" target="_blank" className="flex items-center gap-2">
                         <Image
-                            src="/home/face-f.png"
+                            src="/Home/face-f.png"
                             alt="Facebook"
                             width={30}
                             height={30} 
@@ -19,7 +19,7 @@ export default function Footer() {
                     </Link>
                     <Link href="https://www.instagram.com/noa.condominios/" target="_blank" className="flex items-center gap-2">
                         <Image
-                            src="/home/linkedin-f.png"
+                            src="/Home/linkedin-f.png"
                             alt="LinkedIn"
                             width={30}
                             height={30} 

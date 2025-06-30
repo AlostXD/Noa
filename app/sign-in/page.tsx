@@ -18,55 +18,52 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
 
-      await authClient.signIn.email({
-        email: email,
-        password: password,
-        fetchOptions: {
-            onSuccess() {
-              toast.success("Login feito com sucesso!");
-              router.push("/dashboard");
-            },
-            onError(ctx) {
-              setLoading(false);
-              console.log(ctx);
-              const errorMessage = ctx.response?.statusText || "Erro ao fazer login.";
-              toast.error(errorMessage);
-              router.push("/sign-in");
-            },
-          }
-      })  
+    await authClient.signIn.email({
+      email: email,
+      password: password,
+      fetchOptions: {
+        onSuccess() {
+          toast.success("Login feito com sucesso!");
+          router.push("/dashboard");
+        },
+        onError(ctx) {
+          setLoading(false);
+          console.log(ctx);
+          const errorMessage =
+            ctx.response?.statusText || "Erro ao fazer login.";
+          toast.error(errorMessage);
+          router.push("/sign-in");
+        },
+      },
+    });
   }
-  async function providerLogin(){
-    try{
+  async function providerLogin() {
+    try {
       await authClient.signIn.social({
         provider: "github",
         callbackURL: "/dashboard",
         errorCallbackURL: "/sign-in",
-      })
+      });
     } catch (error) {
-      alert("Erro ao fazer login com o Github.")
-      alert(error)
-      router.push("/sign-in")
+      alert("Erro ao fazer login com o Github.");
+      alert(error);
+      router.push("/sign-in");
     }
   }
 
-
-
-  
-  async function providerGoogleLogin(){
-    try{
+  async function providerGoogleLogin() {
+    try {
       await authClient.signIn.social({
         provider: "google",
         callbackURL: "/dashboard",
         errorCallbackURL: "/sign-in",
-      })
+      });
     } catch (error) {
-      alert("Erro ao fazer login com o Google.")
-      alert(error)
-      router.push("/sign-in")
+      alert("Erro ao fazer login com o Google.");
+      alert(error);
+      router.push("/sign-in");
     }
   }
-
 
   return (
     <>
@@ -82,8 +79,8 @@ export default function LoginPage() {
         </div>
         <form
           onSubmit={handleLogin}
-          className="bg-white bg-opacity-50 w-full max-w-[428px] p-8 relative rounded-[40px] flex flex-col items-center shadow-2xl">
-
+          className="bg-white bg-opacity-50 w-full max-w-[428px] p-8 relative rounded-[40px] flex flex-col items-center shadow-2xl"
+        >
           <h1 className="font-bold text-3xl text-blue-700 text-center mb-[10px]">
             Faça login
           </h1>
@@ -115,7 +112,8 @@ export default function LoginPage() {
           <div className="flex justify-end w-full mb-4">
             <button
               type="button"
-              className="p-0 h-auto text-blue-800 text-sm hover:underline">
+              className="p-0 h-auto text-blue-800 text-sm hover:underline"
+            >
               Esqueceu sua senha?
             </button>
           </div>
@@ -124,8 +122,8 @@ export default function LoginPage() {
             <button
               type="submit"
               className="w-full h-[54px] bg-blue-600 rounded-[10px] shadow-[0px_10px_20px_#cad6ff] font-semibold text-white text-xl hover:bg-blue-700 cursor-pointer transition-all duration-200 ease-in-out hover:scale-110"
-              disabled={loading}>
-
+              disabled={loading}
+            >
               {loading ? "Carregando..." : "Entrar"}
             </button>
             <div className="flex flex-col items-center gap-5">
@@ -135,8 +133,8 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={providerGoogleLogin}
-                  className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center">
-
+                  className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center"
+                >
                   <Image
                     src="/Login/google.png"
                     alt="Google"
@@ -148,8 +146,8 @@ export default function LoginPage() {
                 <button
                   type="button"
                   onClick={providerLogin}
-                  className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center">
-
+                  className="cursor-pointer w-[60px] h-[44px] bg-[#f1f4ff] transition-all duration-300 ease-in-out hover:scale-125 rounded-[10px] flex items-center justify-center"
+                >
                   <Image
                     src="/Login/github.png"
                     alt="Github"
@@ -159,9 +157,15 @@ export default function LoginPage() {
                 </button>
               </div>
             </div>
-            
+
             <div className="w-full h-auto text-sm text-[#494949] font-normal flex justify-center">
-              Não tem conta? <a href="/sign-up" className="font-semibold text-blue-800 cursor-pointer hover:shadow-sm">Cadastrar-se</a>
+              Não tem conta?{" "}
+              <a
+                href="/sign-up"
+                className="font-semibold text-blue-800 cursor-pointer hover:shadow-sm"
+              >
+                Cadastrar-se
+              </a>
             </div>
           </div>
         </form>
