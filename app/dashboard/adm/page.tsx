@@ -23,10 +23,10 @@ export default function AdminDashboardPage() {
 
           <div className="w-full max-w-[700px] lg:max-w-[1330px] flex flex-col items-start">
             <div className="mb-6 lg:mb-10">
-              <div className="[font-family:'Poppins',Helvetica] font-normal text-white text-xl tracking-[0] leading-[normal] mb-2">
-                Funções Administrativas
+              <div className="font-Poppins font-normal text-white text-xl tracking-[0] leading-[normal] mb-2">
+                Painel Administrativo
               </div>
-              <hr className="w-[120px] bg-white h-[3px] border-0 p-0 m-0 mb-4" />
+              <hr className="w-[180px] bg-white h-[2px] rounded-lg border-0 p-0 m-0 mb-4" />
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full">
@@ -38,6 +38,11 @@ export default function AdminDashboardPage() {
                 },
                 { img: "for.png", text: "Fórum", path: "/dashboard/adm/forum" },
                 {
+                  img: "imp-adm.png",
+                  text: "Documentos",
+                  path: "/dashboard/documentos",
+                },
+                {
                   img: "comu-adm.png",
                   text: "Controle",
                   path: "/dashboard/adm/controle",
@@ -46,11 +51,6 @@ export default function AdminDashboardPage() {
                   img: "fin.png",
                   text: "Financeiro",
                   path: "/dashboard/financeiro",
-                },
-                {
-                  img: "imp-adm.png",
-                  text: "Documentos",
-                  path: "/dashboard/documentos",
                 },
               ].map((item, index) => (
                 <Link

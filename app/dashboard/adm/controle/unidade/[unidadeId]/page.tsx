@@ -135,24 +135,22 @@ export default function UnidadeDetalhes() {
     <>
       <NavbarDashboardAdm />
       <div className="p-4 min-h-screen flex flex-col items-center">
-        {/* Informações da Unidade    border-t border-l border-r*/}
+        {/* Informações da Unidade */}
         <div className="w-full max-w-4xl bg-white rounded-[30px] mb-8 font-poppins min-h-screen lg:min-h-[80vh] flex flex-col">
           <div className="p-6 mb-8 border-1 rounded-t-[30px] border-slate-300">
-            <h1 className="text-2xl md:text-4xl font-bold text-center">
+            <h1 className="text-xl md:text-2xl font-bold text-center">
               Unidade {unidade.numero}
             </h1>
-            <p className="text-left mt-2 italic text-md md:text-lg md:text-lg text-black">
-              <span className="font-semibold italic rounded-md  inline-block">
+            <p className="text-center mt-2 italic text-md md:text-lg text-black">
+              <span className="font-semibold italic rounded-md inline-block text-center">
                 {unidade.status}
               </span>
             </p>
-            <p className="text-sm text-left mt-2 italic">
-              <span className="">Descrição:</span>{" "}
-              {unidade.descricao}
+            <p className="text-sm text-left mt-10">
+              <span className="font-semibold">Condomínio:</span> {unidade.condominio.nome}
             </p>
-            <p className="text-sm text-left mt-2">
-              <span className="">Condomínio:</span>{" "}
-              {unidade.condominio.nome}
+            <p className="text-sm text-left mt-2 italic">
+              <span className="font-semibold">Descrição:</span> {unidade.descricao}
             </p>
           </div>
 

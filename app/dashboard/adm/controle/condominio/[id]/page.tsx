@@ -208,7 +208,6 @@ export default function CondominioDetalhes() {
       <div className="bg-[#f1f5ff] flex flex-col w-full min-h-screen 2xl:px-[198px]">
         <div className="flex flex-col md:flex-row flex-1 w-full px-4 py-12 gap-6">
           <div className="flex flex-col md:flex-row w-full px-4 py-12 gap-6">
-
             <aside className="w-full md:w-[250px] lg:w-[280px] bg-white rounded-2xl shadow-md p-6 space-y-2">
               <h2 className="text-[#12266a] font-bold text-lg mb-4">Menu</h2>
               <div className="flex flex-col gap-2 font-medium text-sm text-[#061e3e] divide-y divide-gray-200">
@@ -386,69 +385,65 @@ export default function CondominioDetalhes() {
               {/* Aqui você pode incluir também os formulários condicionais do tipo: if (formAtivo === 'editar') ... */}
 
               {formAtivo === "editar" && (
-                <div className="w-full max-w-4xl bg-white shadow-md rounded-lg p-6 mb-8">
-                  <h2 className="text-xl font-bold mb-4">Editar Informações</h2>
-                  <form
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      const formData = new FormData(
-                        e.target as HTMLFormElement
-                      );
-                      formData.append("id", condominio.id); // Adiciona o ID do condomínio
+                <div className="w-full flex justify-center">
+                  <div className="w-full max-w-[600px] bg-white rounded-2xl shadow-md p-6 flex flex-col gap-6 mt-6">
+                    <div className="flex flex-col items-center justify-center">
+                      <h1 className="text-2xl font-bold mb-4">
+                        Editar Informações
+                      </h1>
+                    </div>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        const formData = new FormData(
+                          e.target as HTMLFormElement
+                        );
+                        formData.append("id", condominio.id); // Adiciona o ID do condomínio
 
-                      // Remove campos vazios antes de enviar
-                      for (const [key, value] of formData.entries()) {
-                        if (!value) {
-                          formData.delete(key);
+                        // Remove campos vazios antes de enviar
+                        for (const [key, value] of formData.entries()) {
+                          if (!value) {
+                            formData.delete(key);
+                          }
                         }
-                      }
 
-                      handleEdit(formData);
-                    }}
-                  >
-                    <label htmlFor="nome" className="block mb-2 font-semibold">
-                      Nome do condomínio
-                    </label>
-                    <input
-                      type="text"
-                      name="nome"
-                      defaultValue={condominio.nome}
-                      className="border border-gray-300 rounded p-2 w-full mb-4"
-                    />
-
-                    <label
-                      htmlFor="endereco"
-                      className="block mb-2 font-semibold"
+                        handleEdit(formData);
+                      }}
+                      className="w-full max-w-[600px] bg-white rounded-2xl p-6 flex flex-col gap-6 mt-6"
                     >
-                      Endereço do condomínio
-                    </label>
-                    <input
-                      type="text"
-                      name="endereco"
-                      defaultValue={condominio.endereco}
-                      className="border border-gray-300 rounded p-2 w-full mb-4"
-                    />
+                      <input
+                        type="text"
+                        name="nome"
+                        defaultValue={condominio.nome}
+                        placeholder="Nome do condomínio"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl resize-none focus:outline-none hover:border-[#015388] transition"
+                        required
+                      />
 
-                    <label
-                      htmlFor="adminEmail"
-                      className="block mb-2 font-semibold"
-                    >
-                      Adicionar ou remover administrador (Email)
-                    </label>
-                    <input
-                      type="text"
-                      name="adminEmail"
-                      placeholder="Digite o email do administrador (Caso já esteja cadastrado, apenas digite novamente que será removido.)"
-                      className="border border-gray-300 rounded p-2 w-full mb-4"
-                    />
+                      <input
+                        type="text"
+                        name="endereco"
+                        defaultValue={condominio.endereco}
+                        placeholder="Endereço do condomínio"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl resize-none focus:outline-none hover:border-[#015388] transition"
+                        required
+                      />
 
-                    <button
-                      type="submit"
-                      className="bg-blue-500 text-white rounded px-4 py-2 hover:bg-blue-600"
-                    >
-                      Atualizar
-                    </button>
-                  </form>
+                      <input
+                        type="email"
+                        name="adminEmail"
+                        placeholder="Digite o email do administrador"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none hover:border-[#015388] transition"
+                      />
+
+                      <button
+                        type="submit"
+                        className="w-full bg-[#015388] hover:bg-[#01416b] text-white font-semibold px-4 py-3 rounded-xl transition"
+                      >
+                        Atualizar
+                      </button>
+                    </form>
+                  </div>
                 </div>
               )}
               {formAtivo === "remover" && (

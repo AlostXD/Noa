@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Image from "next/image";
 import React, { useState } from "react";
@@ -18,7 +18,6 @@ export default function NavbarDashboard() {
 
     return (
         <div className=" h-16 relative z-50 [background:linear-gradient(90deg,rgba(7,21,49,1)_0%,rgba(7,22,50,1)_6%,rgba(7,24,53,1)_13%,rgba(6,27,58,1)_19%,rgba(6,32,64,1)_25%,rgba(5,37,72,1)_31%,rgba(5,44,80,1)_38%,rgba(4,50,90,1)_44%,rgba(4,58,100,1)_50%,rgba(3,65,110,1)_56%,rgba(2,78,128,1)_69%,rgba(1,83,136,1)_75%,rgba(1,88,142,1)_81%,rgba(0,91,147,1)_88%)]">
-            
             <div className="flex items-center justify-between h-16 px-12 2xl:px-[198px] relative">
                 {/* Esquerda */}
                 <div className="flex items-center flex-shrink-0">
@@ -38,8 +37,8 @@ export default function NavbarDashboard() {
                     </div>
                 </div>
 
-                {/* Nav Centro */}
-                <ul className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 space-x-6">
+                {/* Nav Centro (só visível em telas maiores) */}
+                <ul className="hidden md:flex absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 space-x-3">
                     {navigationItems.map((item) => {
                         const isActive = pathname === item.path;
                         return (
@@ -58,8 +57,8 @@ export default function NavbarDashboard() {
                     })}
                 </ul>
 
-                {/* Direita */}
-                <div className="hidden md:flex items-center gap-2 ">
+                {/* Direita (Dashboard e UserProfile) */}
+                <div className="hidden lg:flex items-center gap-2">
                     <Link
                         className="flex items-center gap-2 transition-all duration-300 ease-in-ou hover:scale-115 bg-white/20 backdrop-blur-mg p-2 rounded-md text-white"
                         href="/dashboard"
@@ -76,7 +75,7 @@ export default function NavbarDashboard() {
                 </div>
 
                 {/* Mobile */}
-                <div className="md:hidden">
+                <div className="lg:hidden">
                     <UserProfile style="flex-row" />
                 </div>
             </div>
@@ -93,9 +92,9 @@ export default function NavbarDashboard() {
                                         href={isActive ? "#" : item.path}
                                         className="text-white hover:bg-sky-900 block px-3 py-2 rounded-md text-base font-medium font-poppins"
                                         onClick={() => setIsMenuOpen(false)}
-                                >
-                                    {item.name}
-                                </Link>
+                                    >
+                                        {item.name}
+                                    </Link>
                                 </div>
                             );
                         })}
