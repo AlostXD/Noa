@@ -17,7 +17,9 @@
     "next": "^15.3.4",
     "node-cron": "^4.1.1",
     "nodemailer": "^6.10.1",
+    "pix-payload": "^1.0.4",
     "prisma": "^6.5.0",
+    "qrcode": "^1.5.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2"
@@ -27,6 +29,7 @@
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.17",
+    "@types/qrcode": "^1.5.5",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",

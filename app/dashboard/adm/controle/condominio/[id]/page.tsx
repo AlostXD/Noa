@@ -5,7 +5,6 @@ import React, { useEffect, useState } from "react";
 import NavbarDashboardAdm from "@/app/components/navbarDashboardAdm";
 import toast from "react-hot-toast";
 import Link from "next/link";
-import Image from "next/image";
 
 export default function CondominioDetalhes() {
   const params = useParams(); // Captura os parâmetros dinâmicos da URL

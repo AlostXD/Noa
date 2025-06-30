@@ -45,5 +45,5 @@ export const auth = betterAuth({
       partitioned: true, // New browser standards will mandate this for foreign cookies
     },
     trustedOrigins: ["https://noa-tau.vercel.app", "http://localhost:3000"],
-  },
+  }
 });

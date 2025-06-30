@@ -1,9 +1,28 @@
 "use client";
 
 import React from "react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 import toast from "react-hot-toast";
+import { authClient } from "@/lib/auth-client";
 
-export default function registerInfo() {
+
+export default function RegisterInfo() {
+  const router = useRouter();
+  const [image, setImage] = useState<string | null>(null);
+
+  if (image == "") {
+    setImage('/Login/User.png')
+  }
+  React.useEffect(() => {
+    const updateUser = async () => {
+      await authClient.updateUser({
+        image: image
+      });
+    };
+    updateUser();
+  }, [image]);
+
   return (
     <div className="p-6">
       <form
@@ -21,7 +40,7 @@ export default function registerInfo() {
 
           const result = await response.json();
           toast.success(result.message);
-          console.log("User information updated successfully:", result);
+          router.push("/dashboard/user");
         }}
         className="w-full max-w-[600px] bg-white rounded-2xl shadow-2xl p-8 flex flex-col gap-5 mt-10 mx-auto sm:px-6 lg:px-8"
       >
@@ -35,25 +54,16 @@ export default function registerInfo() {
 
         <input
           type="text"
-          name="name"
-          placeholder="Nome"
-          required
-          className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
-        />
-
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          required
+          name="cpf"
+          placeholder="CPF"
           className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
         />
 
         <input
           type="text"
-          name="cpf"
-          placeholder="CPF"
-          required
+          name="img"
+          onChange={(e) => setImage(e.target.value)}
+          placeholder="URL da Imagem (opcional, só aceitamos formatos do Imgur.)"
           className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
         />
 
@@ -61,7 +71,6 @@ export default function registerInfo() {
           type="text"
           name="cidade"
           placeholder="Cidade"
-          required
           className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
         />
 
@@ -69,14 +78,12 @@ export default function registerInfo() {
           type="text"
           name="endereco"
           placeholder="Endereço"
-          required
           className="w-full px-4 py-3 border border-gray-300 rounded-xl placeholder-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
         />
 
         <input
           type="date"
           name="date"
-          required
           className="w-full px-4 py-3 border border-gray-300 rounded-xl text-gray-500 focus:outline-none focus:border-[#015388] hover:border-[#015388] transition"
         />
 

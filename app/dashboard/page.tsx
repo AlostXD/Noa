@@ -20,7 +20,7 @@ export default function DashboardPage() {
         const session = await authClient.getSession()
 
         setLoading(false); // Liberar o conteúdo
-        toast.success(`Sessão verificada com sucesso! Seja bem-vindo(a) ao Dashboard, ${session.data?.user.name}!`);
+        toast.success(`Sessão verificada com sucesso! Seja bem-vindo(a) ao Dashboard, ${session.data?.user.name}! Cadastre o restante dos dados acessando seu perfil.`);
       } catch (error) {
         console.error("Erro ao verificar sessão:", error);
         router.push("/");
