@@ -28,10 +28,10 @@ export default async function UserProfileLayout({ style }: props) {
           alt="Ícone de perfil"
           width={120}
           height={120}
-          className="rounded-full border-4 border-blue-500 shadow-md"
+          className="rounded-full border-4 border-[#005E97] shadow-md"
         />
         <div>
-          <h1 className="text-xl md:text-2xl font-semibold text-blue-800 tracking-wide">
+          <h1 className="text-xl md:text-2xl font-semibold text-[#043A64] tracking-wide">
             {session.user.name}
           </h1>
           <p className="text-sm text-gray-500 italic">{session.user.email}</p>

@@ -24,7 +24,7 @@ export default async function GetInfo() {
 
     return (
       <div className="w-full max-w-2xl bg-white text-gray-800 text-base px-6 md:px-12 py-8 md:py-12 rounded-b-2xl shadow-md space-y-6">
-        <h2 className="text-center text-lg md:text-xl mb-2 font-bold text-blue-800 text-base font-bold">
+        <h2 className="text-center text-lg md:text-xl mb-2 font-bold text-[#015388] text-base font-bold">
           Dados do Perfil
         </h2>
         {[
