@@ -38,7 +38,7 @@ export default function UserProfile({ style }: props) {
           <h1>{session.user.name}</h1>
           {isDropdownOpen && (
             <div
-              className="mt-2 bg-gradient-to-b from-g0 to-g1 rounded shadow-lg transition-all duration-300 ease-in-out transform opacity-0 scale-95 absolute top-7 lg:top-10"
+              className="mt-2 bg-gradient-to-b from-g0 to-g1 rounded-lg shadow-lg transition-all duration-300 ease-in-out transform opacity-0 scale-95 absolute top-7 lg:top-10"
               style={{
                 opacity: isDropdownOpen ? 1 : 0,
                 transform: isDropdownOpen ? "scale(1)" : "scale(0.95)",

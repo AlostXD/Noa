@@ -208,13 +208,14 @@ export default function CondominioDetalhes() {
       <div className="bg-[#f1f5ff] flex flex-col w-full min-h-screen 2xl:px-[198px]">
         <div className="flex flex-col md:flex-row flex-1 w-full px-4 py-12 gap-6">
           <div className="flex flex-col md:flex-row w-full px-4 py-12 gap-6">
+
             <aside className="w-full md:w-[250px] lg:w-[280px] bg-white rounded-2xl shadow-md p-6 space-y-2">
               <h2 className="text-[#12266a] font-bold text-lg mb-4">Menu</h2>
               <div className="flex flex-col gap-2 font-medium text-sm text-[#061e3e] divide-y divide-gray-200">
                 {/* Info */}
                 <button
                   onClick={() => setFormAtivo("info")}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-lg transition ${
+                  className={`flex items-center gap-2 px-4 py-2 rounded-lg shadow-md transition ${
                     formAtivo === "info"
                       ? "bg-[#005e971a]  text-[#12266a] font-semibold"
                       : "hover:bg-[#e8f0fe]"

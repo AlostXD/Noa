@@ -23,30 +23,24 @@ export default async function GetInfo() {
     });
 
     return (
-      <div className="flex flex-col items-center justify-center">
-        <div className="bg-white shadow-lg rounded-lg p-6 w-full max-w-md">
-          <h1 className="text-4xl font-extrabold text-blue-600 mb-6 text-center">
-            Informações
-          </h1>
-          <div className="space-y-4">
-            <p className="text-lg">
-              <span className="font-semibold">Nome:</span> {user?.nome}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">Email:</span> {user?.email}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">CPF:</span> {user?.cpf}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">Endereço:</span> {user?.endereco}
-            </p>
-            <p className="text-lg">
-              <span className="font-semibold">Data de Nascimento:</span>{" "}
-              {user?.date}
+      <div className="w-full max-w-2xl bg-white text-gray-800 text-base px-6 md:px-12 py-8 md:py-12 rounded-b-2xl shadow-md space-y-6">
+        <h2 className="text-center text-lg md:text-xl mb-2 font-bold text-blue-800 text-base font-bold">
+          Dados do Perfil
+        </h2>
+        {[
+          { label: "Nome", value: user?.nome },
+          { label: "Email", value: user?.email },
+          { label: "CPF", value: user?.cpf },
+          { label: "Endereço", value: user?.endereco },
+          { label: "Data de Nascimento", value: user?.date },
+        ].map((field, i) => (
+          <div key={i} className="flex flex-col">
+            <p className="text-sm text-gray-500">{field.label}</p>
+            <p className="text-base font-medium">
+              {field.value || "Não informado"}
             </p>
           </div>
-        </div>
+        ))}
       </div>
     );
   } catch (error) {
