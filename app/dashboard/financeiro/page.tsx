@@ -35,8 +35,8 @@ export default async function Financeiro() {
       <div className="bg-white flex flex-col w-full min-h-screen px-6 2xl:px-[198px] py-8">
         <div className="flex-1 p-6 flex flex-col space-y-6">
           {/* Título da página */}
-          <div className="flex flex-col items-center">
-            <h1 className="text-4xl font-bold text-gray-900">Minhas Faturas</h1>
+          <div className="flex flex-col items-center font-poppins">
+            <h1 className="text-2xl font-semibold text-gray-800">Minhas Faturas</h1>
             <p className="text-sm text-gray-500">
               Você pode escolher outros produtos para ver as faturas
             </p>
@@ -96,7 +96,7 @@ export default async function Financeiro() {
             </div>
 
             {/* Faturas */}
-            <div className="mt-6 text-lg font-semibold fonte-poppins">
+            <div className="mt-6 text-lg font-bold fonte-poppins">
               Faturas
             </div>
             <div className="bg-white p-4 rounded-2xl border border-gray-300 shadow-lg min-h-[400px] overflow-y-auto">
